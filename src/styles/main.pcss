@@ -14,43 +14,45 @@ html {
     /* padding: 20px; */
     border: 1px solid #4b6584;
     border-radius: 5px;
+    height: 300px;
     display: flex;
-    justify-content: space-around;
-    aligh-items: center;
+    justify-content: flex-end;
+    align-items: stretch;
     flex-flow: nowrap row;
-    align-content: stretch;
+    align-content: center;
 }
 
 .item {
     padding: 10px;
-    /* height: 220px; */
-    width:  200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column-reverse;
+    /* height: 100px; */
+    /* width:  200px; */
+    /* display: flex; */
+    /* align-items: flex-start; */
+    /* flex: 1 1 200px; */
+    /* flex-basis: auto; */
+    /* justify-content: space-evenly; */
+    /* flex-direction: column-reverse; */
+    /* align-items: center; */
     color: #fff;
     font-family: 'Seqoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 5px;
     &:nth-child(1) {
         background: blue;
+        /* flex-grow: 2;
+        flex-shrink: 4; */
         /* font-size: 30px; */
-        flex: 1;
-        flex-shrink: 1;
     }
     &:nth-child(2) {
         background: green;
         /* ont-size: 48px; */
-        flex: 1;
-        flex-shrink: 4;
+
     }
     &:nth-child(3) {
         background: red;
+        /* order: -10; */
         /* ont-size: 24px; */
-        flex: 1;
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 200px;
+        /* margin-left:auto; */
+
     }
     &:nth-child(4) {
         background: purple;
@@ -58,6 +60,7 @@ html {
     }
     &:nth-child(5) {
         background: cyan;
+        /* order: -5; */
         /* align-self: flex-end; */
         /* margin-left:auto; */
     }
@@ -66,6 +69,6 @@ html {
         height: 10px; */
         background: orange;
         border: 1px solid black;
-        justify-content: space-around;
+        /* justify-content: space-around; */
     }
 }

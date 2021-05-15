@@ -3,3 +3,69 @@
 @import "./mixins.pcss";
 @import "./layout/base.pcss";
 @import './blocks/*.pcss';
+
+
+html {
+    height: 100%;
+    background: #dfe4ea;
+    padding-top: 100px;
+}
+.container {
+    /* padding: 20px; */
+    border: 1px solid #4b6584;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    aligh-items: center;
+    flex-flow: nowrap row;
+    align-content: stretch;
+}
+
+.item {
+    padding: 10px;
+    /* height: 220px; */
+    width:  200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column-reverse;
+    color: #fff;
+    font-family: 'Seqoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 5px;
+    &:nth-child(1) {
+        background: blue;
+        /* font-size: 30px; */
+        flex: 1;
+        flex-shrink: 1;
+    }
+    &:nth-child(2) {
+        background: green;
+        /* ont-size: 48px; */
+        flex: 1;
+        flex-shrink: 4;
+    }
+    &:nth-child(3) {
+        background: red;
+        /* ont-size: 24px; */
+        flex: 1;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 200px;
+    }
+    &:nth-child(4) {
+        background: purple;
+        /* ont-size: 18px; */
+    }
+    &:nth-child(5) {
+        background: cyan;
+        /* align-self: flex-end; */
+        /* margin-left:auto; */
+    }
+    .inner-item {
+        /* width: 10px;
+        height: 10px; */
+        background: orange;
+        border: 1px solid black;
+        justify-content: space-around;
+    }
+}

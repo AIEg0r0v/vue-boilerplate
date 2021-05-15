@@ -8,30 +8,31 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Portfolio | main page
   body
-    //- .wrapper
-    //-   .maincontent
-    //-     +image('content/alex.jpg', 'user-pic')
-    //-     +icon('link', 'link-class')
-    //-     .icon-bg
-    //- .container
-    //-   .item ipsum
-    //-   .item Lorem
-    //-   .item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo tortor in orci lobortis, in blandit orci dapibus. Mauris mollis tortor ac justo volutpat venenatis. Nulla facilisi. Ut eleifend, augue eget vestibulum tincidunt, metus dui sagittis justo, ut ornare elit mi a elit. Vestibulum vehicula sem ut gravida iaculis. Fusce id commodo felis. Quisque ut varius ex. Maecenas volutpat tristique mauris nec venenatis. Cras mauris ipsum, lobortis ut magna sit amet, tristique laoreet nisi. Quisque sit amet dui turpis.
-    //-   .item Lorem ipsum dolor sit amet, consectetur adipiscing elit. S
-    //-   .item dolor
-    //- .container
-    //-   .item 1
-    //-   .item
-    //-     .inner-item 21
-    //-     .inner-item 22 
-    //-     .inner-item 23
-    //-     .inner-item 24
-    //-   .item 3
-    //-   .item 4
-    //-   .item 5
+    .wrapper
+      .maincontent
     .container
-      .item 1
-      .item Lorem
-      .item 3
-      .item 4
-      .item 5
+      .header
+    .container
+      .landing Alexander Egorov
+      .container
+        .profile-picture
+          +image('content/alex.jpg', 'user-pic')
+        .profile Born in USSR
+        .description Architect, Cloud Solutions
+    .container
+      .descirption Why I am awesome
+      .backpack backpack goes here
+      .frontend skills here
+      .backend skill here
+    .container
+      .preview-slider My works
+      .work-description
+    .container
+      .references My references
+    .container 
+      .footer
+      +icon('link', 'link-class')
+      .icon-bg
+
+
+    

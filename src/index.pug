@@ -1,38 +1,28 @@
-include ./mixins.pug
+extends ./index.layout.pug
 
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title Portfolio | main page
-  body
-    .wrapper
-      .maincontent
-    .container
-      .header
-    .container
-      .landing Alexander Egorov
-      .container
-        .profile-picture
-          +image('content/alex.jpg', 'user-pic')
-        .profile Born in USSR
-        .description Architect, Cloud Solutions
-    .container
-      .descirption Why I am awesome
-      .backpack backpack goes here
-      .frontend skills here
-      .backend skill here
-    .container
-      .preview-slider My works
-      .work-description
-    .container
-      .references My references
-    .container 
-      .footer
-      +icon('link', 'link-class')
-      .icon-bg
+block content
+  .welcome-section
+    section.hero
+      .container.hero__container
+        header.header
+          a.logo(href="#") AE
+          nav.menu
+            - var menuItems = ["About me","Skills","Works","References"];
+            ul.menu__list
+              each item in menuItems
+                li.menu__item
+                  a(href="#").menu__link #{item}
+          - var socials = ["insta", "vk","github","envelope"];
+          ul.socials
+            each item in socials
+              li.socials__item
+                a(href="#").socials__link
+                  +icon(item, "socials__icon")
+        
+        .hero__center-content
+          button.scroll-down-btn Scroll
+          +icon("scroll","scroll__icon")
 
-
-    
+        .userinfo
+          .userinfo__title Developer's Personal #[br] Web Page (dev)
+          .userinfo__name Alexander #[br] Egorov

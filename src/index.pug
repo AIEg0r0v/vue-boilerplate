@@ -29,8 +29,8 @@ block content
           .values__widget
             - 
               var skillsCategories = [
-                ["Frontend", ["HTML","CSS","JavaScript","Vue"]],
-                ["Backend", ["dotnet","K8S","Azure","Patterns"]],
+                ["Frontend", [["HTML", 35],["CSS3", 30],["JavaScript", 10],["Vue", 5]]],
+                ["Backend", [["dotnet", 85],["K8S", 70],["Azure", 60],["Patterns", 40]]],
               ];
             ul.skills
               each category in skillsCategories
@@ -41,10 +41,4 @@ block content
                       each skill in category[1]
                         li.skills-row__item
                           .skill
-                            svg(viewBox="0 0 100 100").skill__circle-shape
-                              circle(cx="50" cy="50" r="40").skill__circle.skill__circle--layer--under
-                              circle(cx="50" cy="50" r="40" stroke="url(#gradient)" transform="rotate(180 50 50)").skill__circle.skill__circle--layer--above
-                              linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="100%")
-                                stop(offset="0%" stop-color="#5500f2")
-                                stop(offset="100%" stop-color="#8f00ef")
-                            .skill_title #{skill}
+                            +skill(skill[0], skill[1])

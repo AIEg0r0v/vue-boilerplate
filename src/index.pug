@@ -4,21 +4,7 @@ block content
   .welcome-section
     section.hero
       .container.hero__container
-        header.header
-          a.logo(href="#") AE
-          nav.menu
-            - var menuItems = ["About me","Skills","Works","References"];
-            ul.menu__list
-              each item in menuItems
-                li.menu__item
-                  a(href="#").menu__link #{item}
-          - var socials = ["insta", "vk","github","envelope"];
-          ul.socials
-            each item in socials
-              li.socials__item
-                a(href="#").socials__link
-                  +icon(item, "socials__icon")
-        
+        include header
 
         .userinfo
           .userinfo__title Developer's Personal #[br] Web Page (dev)
@@ -29,28 +15,36 @@ block content
           +icon("scroll__chevron","scroll__icon")
     section.about
       .container.about__container
-        .about__user
-          .user
-            .user__avatar
-              .user__avatar-style
-                +image("content/alex.jpg", "user__avatar-pic")
-            - 
-              var userInfo = {
-                location: "Copenhagen",
-                age: "33",
-                birthDate: "26th of November 1987"
-              };
-            table.user__data
-              each value, key in userInfo
-                tr.user__data-row
-                  td.user__data-title #{key}
-                  td.user__data-value #{value}
-        .about__content
-          .about__desc Hi, I my name is
-          .about__title Alexander Egorov
-          .about__text-user
+        include about
+  .middle-section
+    section.values
+      .contaner.skills_container
+        .backpack
+          .backpack__style
+            +image("content/backpack.png", "backpack-pic")
+        .container
+          .values__title How can I be of service
+          .values__content 
             p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          .about__ps
-            +icon("asterix"," asterix__icon")
-            | I have made this piece of cake frontend during my VueJs course at LoftSchool. If only it was very easy to do. But it takes incredible amount of time to create a layout. It is just so easy. 
-          
+          .values__widget
+            - 
+              var skillsCategories = [
+                ["Frontend", ["HTML","CSS","JavaScript","Vue"]],
+                ["Backend", ["dotnet","K8S","Azure","Patterns"]],
+              ];
+            ul.skills
+              each category in skillsCategories
+                li.skills__item
+                  .skills-row
+                    .skills-row__title #{category[0]}
+                    ul.skills-row__list
+                      each skill in category[1]
+                        li.skills-row__item
+                          .skill
+                            svg(viewBox="0 0 100 100").skill__circle-shape
+                              circle(cx="50" cy="50" r="40").skill__circle.skill__circle--layer--under
+                              circle(cx="50" cy="50" r="40" stroke="url(#gradient)" transform="rotate(180 50 50)").skill__circle.skill__circle--layer--above
+                              linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="100%")
+                                stop(offset="0%" stop-color="#5500f2")
+                                stop(offset="100%" stop-color="#8f00ef")
+                            .skill_title #{skill}

@@ -1,0 +1,26 @@
+block about
+  .about__user
+    .user
+      .user__avatar
+        .user__avatar-style
+          +image("content/alex.jpg", "user__avatar-pic")
+      - 
+        var userInfo = {
+          location: "Copenhagen",
+          age: "33",
+          birthDate: "26th of November 1987"
+        };
+      table.user__data
+        each value, key in userInfo
+          tr.user__data-row
+            td.user__data-title #{key}
+            td.user__data-value #{value}
+  .about__content
+    .about__desc Hi, I my name is
+    .about__title Alexander Egorov
+    .about__text-user
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    .about__ps
+      +icon("asterix"," asterix__icon")
+      | I have made this piece of cake frontend during my VueJs course at LoftSchool. If only it was very easy to do. But it takes incredible amount of time to create a layout. It is just so easy. 
+    

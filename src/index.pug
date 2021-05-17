@@ -1,15 +1,44 @@
-include ./mixins.pug
+extends ./index.layout.pug
 
-<!DOCTYPE html>
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title Portfolio | main page
-  body
-    .wrapper
-      .maincontent
-        +image('content/user.jpg', 'user-pic')
-        +icon('link', 'link-class')
-        .icon-bg
+block content
+  .welcome-section
+    section.hero
+      .container.hero__container
+        include header
+
+        .userinfo
+          .userinfo__title Developer's Personal #[br] Web Page (dev)
+          .userinfo__name Alexander #[br] Egorov
+        
+        .hero__center-content
+          button.scroll-down-btn Scroll
+          +icon("scroll__chevron","scroll__icon")
+    section.about
+      .container.about__container
+        include about
+  .middle-section
+    section.values
+      .contaner.skills_container
+        .backpack
+          .backpack__style
+            +image("content/backpack.png", "backpack-pic")
+        .container
+          .values__title How can I be of service
+          .values__content 
+            p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          .values__widget
+            - 
+              var skillsCategories = [
+                ["Frontend", [["HTML", 35],["CSS3", 30],["JavaScript", 10],["Vue", 5]]],
+                ["Backend", [["dotnet", 85],["K8S", 70],["Azure", 60],["Patterns", 40]]],
+              ];
+            ul.skills
+              each category in skillsCategories
+                li.skills__item
+                  .skills-row
+                    .skills-row__title #{category[0]}
+                    ul.skills-row__list
+                      each skill in category[1]
+                        li.skills-row__item
+                          .skill
+                            +skill(skill[0], skill[1])

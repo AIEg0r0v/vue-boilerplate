@@ -98,15 +98,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [pcss, vue, js, files, svg, pug],
     },
-    resolve: {
-      alias: {
-        vue$: "vue/dist/vue.esm.js",
-        images: path.resolve(__dirname, "./src/images"),
-        components: path.resolve(__dirname, "./src/admin/components"),
-        styles: path.resolve(__dirname, "./src/styles"),
-      },
-      extensions: ["*", ".js", ".vue", ".json"],
-    },
+    
     devServer: {
       historyApiFallback: true,
       noInfo: false,

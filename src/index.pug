@@ -19,26 +19,4 @@ block content
   .middle-section
     section.values
       .contaner.skills_container
-        .backpack
-          .backpack__style
-            +image("content/backpack.png", "backpack-pic")
-        .container
-          .values__title How can I be of service
-          .values__content 
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          .values__widget
-            - 
-              var skillsCategories = [
-                ["Frontend", [["HTML", 35],["CSS3", 30],["JavaScript", 10],["Vue", 5]]],
-                ["Backend", [["dotnet", 85],["K8S", 70],["Azure", 60],["Patterns", 40]]],
-              ];
-            ul.skills
-              each category in skillsCategories
-                li.skills__item
-                  .skills-row
-                    .skills-row__title #{category[0]}
-                    ul.skills-row__list
-                      each skill in category[1]
-                        li.skills-row__item
-                          .skill
-                            +skill(skill[0], skill[1])
+        include skills

@@ -41,10 +41,14 @@
   
 }
 .square-btns {
-  
+  display: flex;
+  justify-content: flex-end;
+}
+.button {
+  background-color: #252830;
 }
 .square-btns__item{
-  background: #252830;
+  background-color: #252830;
   width: 53px;
   height: 53px;
 }
@@ -56,6 +60,7 @@
 }
 .tags {
   display: flex;
+  flex-flow: wrap row;
   margin-bottom: 35px;
 }
 .tags__items {
@@ -101,4 +106,12 @@
   width: 15px;
   height: 15px;
   fill: #586ED3;
+}
+.square-btns__item--next {
+  transform: rotate(180deg);
+}
+.works-btn {
+  fill: #717883;
+  height: 10px;
+  width: 18px;
 }

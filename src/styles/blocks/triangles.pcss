@@ -1,0 +1,33 @@
+.triangles__shape {
+  width: 50%;
+  fill: #fff;
+  width: 50%;
+
+}
+.middle-section {
+  position: relative;
+}
+
+.middle-section__triangles-top {
+  height: 100px;
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+}
+
+.middle-section__triangles-bottom {
+  height: 100px;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+.triangles {
+  display: flex;
+  width: 100%;
+
+  &--poited-down {
+    .triangles__shape {
+      transform: rotate(180deg);
+    }
+  }
+}

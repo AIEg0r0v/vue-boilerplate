@@ -11,9 +11,24 @@
 .works-preview {
 
 }
+.works__container {
+
+}
 .works-preview__pictures {
-  width: 975px;
+  /* width: 58%; */
+  /* position: relative; */
   height: 550px;
+
+  &:before {
+    content: attr(data-slide);
+    position: absolute;
+    top: 66%;
+    line-height: 1;
+    font-size: 400px;
+    font-weight: 800;
+    color: rgba($text-color, .5);
+    transform: translateX(385%);
+  }
 }
 .works-preview__img {
 
@@ -43,9 +58,6 @@
 .square-btns {
   display: flex;
   justify-content: flex-end;
-}
-.button {
-  background-color: #252830;
 }
 .square-btns__item{
   background-color: #252830;

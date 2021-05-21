@@ -1,0 +1,30 @@
+block skills
+    .section-title My works
+    .works__content
+        .works-preview
+            .works-preview__pictures(data-slide="2")
+                +image("content/Preview-1.Big.png", "works-preview__img")
+                .works-preview__thumbs
+                    ul.thumbs
+                        - for (var i = 4; i > 0; i--)
+                            li.thumbs__item
+                                a(href="").thumbs__link
+                                +image(`content/Preview-${i}.png`, "thumbs__pic")
+            .works--preview__btns
+                .square-btns
+                    button(type="button").square-btns__item.square-btns__item--next
+                        +icon("chevron","works-btn")
+                    button(type="button").square-btns__item.square-btns__item--prev
+                        +icon("chevron","works-btn")
+        .works-preview__info
+            - var tags = ["HTML", "CSS", "JavaScript"];
+            ul.tags
+                each item in tags
+                    li.tags__items
+                        .tag #{item}
+            .works-preview__title Selected Work Title
+            .works-preview__desc
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            .works-preview__visit
+                +icon("link","link__icon")
+                a(href="").iconed-link Visit Website    

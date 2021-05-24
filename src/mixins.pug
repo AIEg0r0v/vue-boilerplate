@@ -16,3 +16,18 @@ mixin skill(name, skillLevel)
       stop(offset="0%" stop-color="#5500f2")
       stop(offset="100%" stop-color="#8f00ef")
   .skill_title #{name}
+
+mixin quote(reviewerName, reviewerTitle, review, reviewerAvatar)
+  .quote
+    .quote-icon
+      +icon("quote", "quote-icon")
+    .quote__text
+      p #{review}
+    .quote__user
+      .user-display
+        .user-display__avatar
+          .user-display__avatar-style
+            +image(`content/${reviewerAvatar}`, "user-display__pic")
+        .user-display__data
+          .user-display__name #{reviewerName}
+          .user-display__title #{reviewerTitle}

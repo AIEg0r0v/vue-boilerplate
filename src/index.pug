@@ -21,7 +21,15 @@ block content
       include chevron
     section.values  
       .contaner.skills__container
-        include skills
+        .backpack
+          .backpack__style
+              +image("content/backpack.png", "backpack-pic")
+        .container
+            .values__title How can I be of service
+            .values__content 
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            .values__widget
+              #skills-component
     section.works
       .container.works__container
         include works

@@ -1,0 +1,45 @@
+script(type="text/x-template")#works-list
+    .works__content
+        .works-preview
+            .works-preview__pictures(data-slide="2")
+                +image("content/Preview-1.Big.png", "works-preview__img")
+                work-thumbs
+            work-btns
+        work-info(:work="works[0]")    
+
+//- script(type="text/x-template")#works-display
+//-     #test
+
+script(type="text/x-template")#work-btns
+    .works--preview__btns
+        .square-btns
+            button(type="button").square-btns__item.square-btns__item--next
+                +icon("chevron","works-btn")
+            button(type="button").square-btns__item.square-btns__item--prev
+                +icon("chevron","works-btn")
+
+//- script(type="text/x-template")#work-preview
+//-     #test
+
+script(type="text/x-template")#work-thumbs
+    .works-preview__thumbs
+        ul.thumbs
+            - for (var i = 4; i > 0; i--)
+                li.thumbs__item
+                    a(href="").thumbs__link
+                    +image(`content/Preview-${i}.png`, "thumbs__pic")
+
+script(type="text/x-template")#work-tags
+    ul.tags
+        li.tags__items(v-for="tag in tags")
+            .tag {{item}}
+
+script(type="text/x-template")#work-info
+    .works-preview__info
+        work-tags(:tags="work.tags")
+        .works-preview__title {{work.title}}
+        .works-preview__desc
+            p {{work.description}}
+        .works-preview__visit
+            +icon("link","link__icon")
+            a(href="").iconed-link Visit Website

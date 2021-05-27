@@ -1,6 +1,5 @@
 import Vue from "vue";
 
-
 const skills = new Vue({
     template: "#skills-list",
     data() {

@@ -1,6 +1,17 @@
 import Vue from "vue";
 
 
+Vue.component('workPreview', {
+    template: "#work-preview",
+    data() {
+        return {
+            works: []
+        }
+    },
+    created(){
+    }
+});
+
 Vue.component('workThumbs', {
     template: "#work-thumbs",
     data() {

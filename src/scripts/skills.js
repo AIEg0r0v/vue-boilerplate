@@ -7,6 +7,7 @@ const skills = new Vue({
             categories: []
         }
     },
+    
     created(){
         this.categories = require('../data/skills.json')
     }

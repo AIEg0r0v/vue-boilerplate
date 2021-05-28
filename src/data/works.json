@@ -3,7 +3,7 @@
         "id": 1,
         "title": "First Work",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "image": "content/Preview-1.png",
+        "image": "Preview-1.png",
         "link": "//google.com",
         "tags": ["HTML", "CSS", "JavaScript"]
     },
@@ -11,7 +11,7 @@
         "id": 2,
         "title": "Second Work",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        "image": "content/Preview-2.png",
+        "image": "Preview-2.png",
         "link": "//ya.ru",
         "tags": ["Dotnet", "C#", "WebApi"]
     },
@@ -19,7 +19,7 @@
         "id": 3,
         "title": "Third work",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "image": "content/Preview-3.png",
+        "image": "Preview-3.png",
         "link": "//bing.com",
         "tags": ["Azure", "Kubernetes", "DevOps"]
     },
@@ -27,7 +27,7 @@
         "id": 4,
         "title": "Forth work",
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "image": "content/Preview-4.png",
+        "image": "Preview-4.png",
         "link": "//bing.com",
         "tags": ["WPF", "Desktop", "MVVM", "C#"]
     }

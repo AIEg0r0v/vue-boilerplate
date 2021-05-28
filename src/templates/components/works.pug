@@ -1,25 +1,37 @@
 script(type="text/x-template")#works-list
     .works__content
-        work-preview
-        work-info(:work="works[0]")    
+        work-preview(
+            :currentWork="selectedWork", 
+            :works="works",
+            @nextSlide="nextSlide",
+            @prevSlide="prevSlide"
+        )
+        work-info(:work="selectedWork")    
 
 //- script(type="text/x-template")#works-display
 //-     #test
 
 script(type="text/x-template")#work-preview
     .works-preview
-        .works-preview__pictures(data-slide="2")
-            +image("content/Preview-1.Big.png", "works-preview__img")
-        work-thumbs
-        work-btns
+        .works-preview__pictures(:data-slide="currentWork.id")
+            img(:src="currentWork.image").works-preview__img
+        work-thumbs(:currentWork="currentWork", :works="works")
+        work-btns(
+            @nextSlide="nextSlide",
+            @prevSlide="prevSlide"
+        )
 
 script(type="text/x-template")#work-btns
     .works--preview__btns
         .square-btns
-            button(type="button").square-btns__item.square-btns__item--next
-                +icon("chevron","works-btn")
-            button(type="button").square-btns__item.square-btns__item--prev
-                +icon("chevron","works-btn")
+            button(
+                type="button"
+                @click="nextSlide"
+            ).square-btns__item.square-btns__item--next
+            button(
+                type="button"
+                @click="prevSlide"
+            ).square-btns__item.square-btns__item--prev
 
 //- script(type="text/x-template")#work-preview
 //-     #test
@@ -27,15 +39,17 @@ script(type="text/x-template")#work-btns
 script(type="text/x-template")#work-thumbs
     .works-preview__thumbs
         ul.thumbs
-            - for (var i = 4; i > 0; i--)
-                li.thumbs__item(class=`${i === 2 ?'active' : ''}`)
-                    a(href="").thumbs__link
-                    +image(`content/Preview-${i}.png`, "thumbs__pic")
+            li.thumbs__item(
+                v-for="work in works" :key="work.id"
+                :class="{active: currentWork.id === work.id}"    
+            )
+                a(:href="work.link").thumbs__link
+                img(:src="work.image").thumbs__pic
 
 script(type="text/x-template")#work-tags
     ul.tags
         li.tags__items(v-for="tag in tags")
-            .tag {{item}}
+            .tag {{tag}}
 
 script(type="text/x-template")#work-info
     .works-preview__info
@@ -44,5 +58,4 @@ script(type="text/x-template")#work-info
         .works-preview__desc
             p {{work.description}}
         .works-preview__visit
-            +icon("link","link__icon")
-            a(href="").iconed-link Visit Website
+            a(:href="work.link").iconed-link Visit Website

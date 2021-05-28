@@ -3,6 +3,7 @@ script(type="text/x-template")#works-list
         work-preview(
             :currentWork="selectedWork", 
             :works="works",
+            :selectedIndex="selectedIndex",
             @nextSlide="nextSlide",
             @prevSlide="prevSlide"
         )
@@ -13,12 +14,15 @@ script(type="text/x-template")#works-list
 
 script(type="text/x-template")#work-preview
     .works-preview
-        .works-preview__pictures(:data-slide="currentWork.id")
+        .works-preview__pictures(:data-slide="selectedIndex + 1")
             img(:src="currentWork.image").works-preview__img
-        work-thumbs(:currentWork="currentWork", :works="works")
+        work-thumbs(
+            :currentWork="currentWork", 
+            :works="reversedWorks"
+        )
         work-btns(
-            @nextSlide="nextSlide",
-            @prevSlide="prevSlide"
+            @nextSlide="$emit('nextSlide')",
+            @prevSlide="$emit('prevSlide')"
         )
 
 script(type="text/x-template")#work-btns
@@ -26,11 +30,11 @@ script(type="text/x-template")#work-btns
         .square-btns
             button(
                 type="button"
-                @click="nextSlide"
+                @click="$emit('nextSlide')"
             ).square-btns__item.square-btns__item--next
             button(
                 type="button"
-                @click="prevSlide"
+                @click="$emit('prevSlide')"
             ).square-btns__item.square-btns__item--prev
 
 //- script(type="text/x-template")#work-preview
@@ -53,7 +57,9 @@ script(type="text/x-template")#work-tags
 
 script(type="text/x-template")#work-info
     .works-preview__info
-        work-tags(:tags="work.tags")
+        work-tags(
+            :tags="work.tags"
+        )
         .works-preview__title {{work.title}}
         .works-preview__desc
             p {{work.description}}

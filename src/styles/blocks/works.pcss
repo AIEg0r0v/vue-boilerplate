@@ -38,25 +38,31 @@
 .works-preview__thumbs {
   width: 180px;
   position: relative;
-  margin-top: -400px;
+  margin-top: -410px;
   margin-left: 795px;
 }
 .thumbs {
   margin: 0px;
 }
+
+.thumbs__pic {
+
+}
+
 .thumbs__item {
   &:hover{
     border: 3px;
     border-color: #dc9322;
     border-style: solid;
+    &:last-child{
+      margin-bottom: 0px;
+    }
   }
 }
 .thumbs__link{
 
 } 
-.thumbs__pic{
 
-}
 
 .works--preview__btns {
   width: 100px;
@@ -92,7 +98,7 @@
   }
   &--prev {
     &:before {
-      transform: translate(-50%, -50%) rotate(-180deg);
+      transform: translate(-50%, -50%) rotate(0deg);
     }
     &:active {
       &:before {

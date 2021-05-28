@@ -5,7 +5,8 @@ script(type="text/x-template")#works-list
             :works="works",
             :selectedIndex="selectedIndex",
             @nextSlide="nextSlide",
-            @prevSlide="prevSlide"
+            @prevSlide="prevSlide",
+            @setCurrent="setCurrent"
         )
         work-info(:work="selectedWork")    
 
@@ -18,7 +19,8 @@ script(type="text/x-template")#work-preview
             img(:src="currentWork.image").works-preview__img
         work-thumbs(
             :currentWork="currentWork", 
-            :works="reversedWorks"
+            :works="reversedWorks",
+            @setCurrent="$emit('setCurrent', $event)"
         )
         work-btns(
             @nextSlide="$emit('nextSlide')",
@@ -45,7 +47,8 @@ script(type="text/x-template")#work-thumbs
         ul.thumbs
             li.thumbs__item(
                 v-for="work in works" :key="work.id"
-                :class="{active: currentWork.id === work.id}"    
+                :class="{active: currentWork.id === work.id}"   
+                @click="$emit('setCurrent', work)" 
             )
                 a(:href="work.link").thumbs__link
                 img(:src="work.image").thumbs__pic

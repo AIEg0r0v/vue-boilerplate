@@ -29,6 +29,9 @@ Vue.component('workThumbs', {
         return {
         }
     },
+    methods: {
+        
+    },
     created(){
     }
 });
@@ -124,12 +127,18 @@ const works = new Vue({
             this.works.unshift(lastItem);
             this.works.pop();
             this.selectedIndex--;
+        },
+        setCurrent(work){
+            while(this.works[0] !== work)
+            {
+                this.nextSlide();
+            }
         }
     },
     created(){
         var loadedWorks = require('../data/works.json')
         this.works = this.updateImagesPath(loadedWorks);
-        this.selectedWork = this.works[this.selectedIndex];
+        // this.selectedWork = this.works[this.selectedIndex];
     }
 });
 

@@ -44,6 +44,14 @@
 .footer__copyright {
   display: flex;
   
+  @include desktop {
+    flex-flow: column;
+    align-items: flex-start;
+
+    &-userinfo{
+      margin-left: 0px;
+    }
+  }
 }
 .footer__center__container {
   margin-left: 140px;

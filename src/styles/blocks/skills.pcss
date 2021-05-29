@@ -58,6 +58,11 @@
   display: flex;
   margin: 145px 0 50px;
   padding: 0 200px 0 200px;
+
+  @include tablets {
+    flex-direction: column-reverse;
+    
+  }
 }
 .backpack__style {
   width: 700px;

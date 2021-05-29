@@ -1,6 +1,11 @@
 .works__content {
   display: flex;
   padding-bottom: 80px;
+
+  @include tablets {
+    flex-flow: wrap;
+    justify-content: center;
+  }
 }
 .works-preview {
 

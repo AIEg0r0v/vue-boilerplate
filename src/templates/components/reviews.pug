@@ -2,18 +2,26 @@ script(type="text/x-template")#reviews-list
     .slider
         .slider__header
             .section-title What people think about me
-            .slider__buttons
+            .slider__buttons(@click="checkArrows")
                 button(
-                    type="button",
-                    @click="previous"
+                    type="button"
+                    @click="previous" 
+                    ref="prevBtn" 
+                    :disabled = "disabledPrev"
                 ).round-btn.round-btn--pointer-left
                     +icon("chevron","review-btn")
                 button(
-                    type="button",
-                    @click="next"
+                    type="button"
+                    @click="next" 
+                    ref="nextBtn"
+                    :disabled = "disabledNext"
                 ).round-btn.round-btn--pointer-right
                     +icon("chevron","review-btn")
-        Flickity(:options="flickityOptions" ref="flickity").slider__content
+        Flickity(
+                :options="flickityOptions" 
+                ref="flickity"
+                @change="console.log('works')"    
+            ).slider__content
             .slider__item(
                 v-for="review in reviews" 
                 :key="review.id"

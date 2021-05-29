@@ -22,11 +22,16 @@ const works = new Vue({
     data() {
         return {
             reviews: [],
+            disabledNext: false,
+            disabledPrev: true,
             flickityOptions: {
-                initialIndex: 4,
+                initialIndex: 0,
+                groupCells: 1,
                 prevNextButtons: false,
                 pageDots: false,
-                wrapAround: false
+                wrapAround: false,
+                adaptiveHeight: true,
+                cellAlign: 'left'
                 
                 // any options from Flickity can be used
               }
@@ -39,6 +44,14 @@ const works = new Vue({
 
     },
     methods: {
+        checkArrows(e){
+
+            var selectedIndex = this.$refs.flickity.$flickity.selectedIndex;
+            var maxIndex = this.reviews.length - 1;
+            this.disabledNext = selectedIndex === maxIndex;
+            this.disabledPrev = selectedIndex === 0;
+            
+        },
         updateImagesPath(reviews){
             return reviews.map(review => {
                 const imagePath = require(`../images/content/${review.reviewer.avatar}`).default;
@@ -47,13 +60,10 @@ const works = new Vue({
             })
         },
         next() {
-            console.log("next");
             this.$refs.flickity.next();
           },
           
         previous() {
-            
-            console.log("previous");
             this.$refs.flickity.previous();
         }
     },
@@ -62,8 +72,11 @@ const works = new Vue({
         this.reviews = this.updateImagesPath(reviews);
     },
     mounted() {
-        console.log(this.reviews);
-        console.log(this.$refs.flickity);
+        let context = this;
+        this.$refs.flickity.on("change", function(_) {
+            context.disabledNext = this.selectedIndex === context.reviews.length - 1;
+            context.disabledPrev = this.selectedIndex === 0;
+        });
     }
 });
 

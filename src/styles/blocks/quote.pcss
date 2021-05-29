@@ -1,0 +1,30 @@
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: inherit;
+  &:before {
+    content: "";
+    display: block;
+    width: 75px;
+    height: 55px;
+    background: svg-load('quote.svg', fill=#DDE3EC) center center / contain no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include tablets {
+      background: none;
+    }}
+}
+
+.quote__text {
+  padding-left: 100px;
+  p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba($text-color, .5);
+  }
+}
+

@@ -1,12 +1,6 @@
-.section-title {
-  font-weight: 800;
-  font-size: 36px;
-  color: $text-color;
-  align: left;
-  margin-bottom: 80px;
-}
 .works__content {
   display: flex;
+  padding-bottom: 80px;
 }
 .works-preview {
 
@@ -36,33 +30,81 @@
 .works-preview__thumbs {
   width: 180px;
   position: relative;
-  margin-top: -400px;
+  margin-top: -410px;
   margin-left: 795px;
 }
 .thumbs {
   margin: 0px;
 }
-.thumbs__item {
 
+.thumbs__pic {
+  
+}
+
+.thumbs__item {
+  &:hover{
+    border: 3px;
+    border-color: #dc9322;
+    border-style: solid;
+    &:last-child{
+      margin-bottom: 0px;
+    }
+  }
 }
 .thumbs__link{
 
 } 
-.thumbs__pic{
 
-}
 
 .works--preview__btns {
-  
+  width: 100px;
+  position: relative;
+  margin-left: 874px;
 }
 .square-btns {
   display: flex;
-  justify-content: flex-end;
+  min-height: 50px;
 }
 .square-btns__item{
-  background-color: #252830;
-  width: 53px;
-  height: 53px;
+  width: 50%;
+  background: #252830;
+  display: block;
+  position: relative;
+  &:before {
+    content: "";
+    background: svg-load('chevron.svg', fill=#fff, width=100%, height=100%) center center no-repeat;
+    display: block;
+    width: 8px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    transition: opacity .3s, margin-top .3s;
+    opacity: .3;
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+  &--prev {
+    &:before {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    &:active {
+      &:before {
+        margin-top: 3px;
+      }
+    }
+  }
+  &--next {
+    &:active {
+      &:before {
+        margin-top: -3px;
+      }
+    }
+  }
 }
 
 .works-preview__info {
@@ -111,19 +153,22 @@
   font-size: 18px;
   color: #586ED3;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  
+  &:before {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: svg-load('link.svg', fill=#586ED3) center center no-repeat;
+    margin-right: 20px;
+  }
+}
 
-}
-.link__icon {
-  margin-right: 15px;
-  width: 15px;
-  height: 15px;
-  fill: #586ED3;
-}
-.square-btns__item--next {
-  transform: rotate(180deg);
-}
-.works-btn {
-  fill: #717883;
-  height: 10px;
-  width: 18px;
+
+.active {
+  border: 3px;
+  border-color: #dc9322;
+  border-style: solid;
 }

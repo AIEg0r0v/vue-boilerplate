@@ -1,0 +1,46 @@
+script(type="text/x-template")#reviews-list  
+    .slider
+        .slider__header
+            .section-title What people think about me
+            .slider__buttons(@click="checkArrows")
+                button(
+                    type="button"
+                    @click="previous" 
+                    ref="prevBtn" 
+                    :disabled = "disabledPrev"
+                ).round-btn.round-btn--pointer-left
+                    +icon("chevron","review-btn")
+                button(
+                    type="button"
+                    @click="next" 
+                    ref="nextBtn"
+                    :disabled = "disabledNext"
+                ).round-btn.round-btn--pointer-right
+                    +icon("chevron","review-btn")
+        Flickity(
+                :options="flickityOptions" 
+                ref="flickity"
+                @change="console.log('works')"    
+            ).slider__content
+            .slider__item(
+                v-for="review in reviews" 
+                :key="review.id"
+            )
+                quote(:review="review")
+
+
+script(type="text/x-template")#quote
+    .quote
+        .quote__text
+            p {{review.text}}
+        reviewer(:reviewer="review.reviewer")
+
+script(type="text/x-template")#reviewer
+    .quote__user
+        .user-display
+            .user-display__avatar
+                .user-display__avatar-style
+                    img(:src="reviewer.avatar").user-display__pic
+            .user-display__data
+                .user-display__name {{reviewer.name}}
+                .user-display__title {{reviewer.title}}

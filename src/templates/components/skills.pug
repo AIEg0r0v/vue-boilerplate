@@ -1,0 +1,22 @@
+script(type="text/x-template")#skills-list
+    ul.skills
+        li.skills__item(v-for="category in categories" :key="category.id")
+            skills-category(:category="category")
+
+script(type="text/x-template")#skills-category
+    .skills-row
+        .skills-row__title {{category.name}}
+        ul.skills-row__list
+            li.skills-row__item(v-for="skill in category.skills" :key="skill.id")
+                skill(:skill="skill")
+
+
+script(type="text/x-template")#skill
+    .skill
+        svg(viewBox="0 0 100 100").skill__circle-shape
+            circle(cx="50" cy="50" r="40").skill__circle.skill__circle--layer--under
+            circle(cx="50" cy="50" r="40" stroke="url(#gradient)" transform="rotate(180 50 50)" :style="style").skill__circle.skill__circle--layer--above
+            linearGradient(id="gradient" x1="0%" y1="0%" x2="100%" y2="100%")
+                stop(offset="0%" stop-color="#5500f2")
+                stop(offset="100%" stop-color="#8f00ef")
+        .skill_title {{skill.name}}

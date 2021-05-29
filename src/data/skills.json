@@ -1,0 +1,54 @@
+[
+ {
+     "id": 1,
+     "name": "frontend",
+     "skills": [
+         {
+            "id": 1,
+            "name": "HTML",
+            "value": 35
+        },
+        {
+            "id": 2,
+            "name": "CSS3",
+            "value": 30
+        },
+        {
+            "id": 3,
+            "name": "JavaScript",
+            "value": 10
+        },
+        {
+            "id": 4,
+            "name": "Vue",
+            "value": 5
+        }
+     ]
+ },
+ {
+    "id": 2,
+    "name": "Backend",
+    "skills": [
+       {
+            "id": 5,
+            "name": "dotnet",
+            "value": 85
+       },
+       {
+            "id": 6,
+            "name": "K8S",
+            "value": 70
+       },
+       {
+            "id": 7,
+            "name": "Azure",
+            "value": 60
+       },
+       {
+            "id": 8,
+            "name": "PatternsVue",
+            "value": 40
+       }
+    ]
+}
+]

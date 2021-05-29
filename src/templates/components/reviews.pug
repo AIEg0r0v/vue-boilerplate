@@ -8,19 +8,27 @@ script(type="text/x-template")#reviews-list
                 button(type="button").round-btn.round-btn--pointer-right
                     +icon("chevron","review-btn")
         ul.slider__content
-            - 
-                var reviews = [{
-                    reviewerName: "Cicero",
-                    reviewerTitle: "Consul of Rome",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    avatar: "user.png"
-                },
-                {
-                    reviewerName: "Augustus",
-                    reviewerTitle: "Emperor of Rome",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                    avatar: "user.png"
-                }];
-            each review in reviews
-                li.slider__item
-                    +quote(review["reviewerName"], review["reviewerTitle"], review["text"], review["avatar"])
+            li.slider__item(
+                v-for="review in reviews" 
+                :key="review.id"
+            )
+                quote(:review="review")
+
+
+script(type="text/x-template")#quote
+    .quote
+        .quote-icon
+            +icon("quote", "quote-icon")
+        .quote__text
+            p {{review.text}}
+        reviewer(:reviewer="review.reviewer")
+
+script(type="text/x-template")#reviewer
+    .quote__user
+        .user-display
+            .user-display__avatar
+                .user-display__avatar-style
+                    img(:src="reviewer.avatar").user-display__pic
+            .user-display__data
+                .user-display__name {{reviewer.name}}
+                .user-display__title {{reviewer.title}}

@@ -23,10 +23,10 @@ const works = new Vue({
         return {
             reviews: [],
             flickityOptions: {
-                initialIndex: 3,
+                initialIndex: 4,
                 prevNextButtons: false,
                 pageDots: false,
-                wrapAround: true
+                wrapAround: false
                 
                 // any options from Flickity can be used
               }
@@ -47,11 +47,14 @@ const works = new Vue({
             })
         },
         next() {
+            console.log("next");
             this.$refs.flickity.next();
           },
           
         previous() {
-        this.$refs.flickity.previous();
+            
+            console.log("previous");
+            this.$refs.flickity.previous();
         }
     },
     created(){
@@ -60,6 +63,7 @@ const works = new Vue({
     },
     mounted() {
         console.log(this.reviews);
+        console.log(this.$refs.flickity);
     }
 });
 

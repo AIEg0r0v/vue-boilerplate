@@ -3,12 +3,18 @@ script(type="text/x-template")#reviews-list
         .slider__header
             .section-title What people think about me
             .slider__buttons
-                button(type="button").round-btn.round-btn--pointer-left
+                button(
+                    type="button",
+                    @click="previous"
+                ).round-btn.round-btn--pointer-left
                     +icon("chevron","review-btn")
-                button(type="button").round-btn.round-btn--pointer-right
+                button(
+                    type="button",
+                    @click="next"
+                ).round-btn.round-btn--pointer-right
                     +icon("chevron","review-btn")
-        ul.slider__content
-            li.slider__item(
+        Flickity(:options="flickityOptions" ref="flickity").slider__content
+            .slider__item(
                 v-for="review in reviews" 
                 :key="review.id"
             )
@@ -17,8 +23,6 @@ script(type="text/x-template")#reviews-list
 
 script(type="text/x-template")#quote
     .quote
-        .quote-icon
-            +icon("quote", "quote-icon")
         .quote__text
             p {{review.text}}
         reviewer(:reviewer="review.reviewer")

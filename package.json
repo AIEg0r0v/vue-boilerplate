@@ -37,6 +37,7 @@
     "postcss-rgb": "^1.0.0",
     "postcss-scss": "^2.0.0",
     "postcss-svgo": "^4.0.2",
+    "pug": "^3.0.2",
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.1.0",
     "svg-sprite-loader": "^5.0.0",
@@ -58,6 +59,7 @@
     "request": "^2.88.0",
     "signale": "^1.4.0",
     "vue": "^2.6.7",
+    "vue-flickity": "^1.2.1",
     "vue-router": "^3.0.2"
   }
 }

@@ -1,4 +1,7 @@
 import Vue from "vue";
+import Flickity from 'vue-flickity';
+ 
+
 
 Vue.component('quote', {
    template: "#quote",
@@ -13,9 +16,20 @@ Vue.component('reviewer', {
 
 const works = new Vue({
     template: "#reviews-list",
+    components: {
+        Flickity
+      },
     data() {
         return {
-            reviews: []
+            reviews: [],
+            flickityOptions: {
+                initialIndex: 3,
+                prevNextButtons: false,
+                pageDots: false,
+                wrapAround: true
+                
+                // any options from Flickity can be used
+              }
         }
     },
     computed:{
@@ -31,6 +45,13 @@ const works = new Vue({
                 review.reviewer.avatar = imagePath;
                 return review
             })
+        },
+        next() {
+            this.$refs.flickity.next();
+          },
+          
+        previous() {
+        this.$refs.flickity.previous();
         }
     },
     created(){

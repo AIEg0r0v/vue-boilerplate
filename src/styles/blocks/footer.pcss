@@ -6,12 +6,12 @@
   color: #464E62;
 }
 .footer__quote {
-  margin-top: 70px;
-  margin-left: 75px;
+
 }
 .footer__quote-text {
   font-size: 16px;
   line-height: 30px;
+  max-width: 23rem;
   color: rgba(255, 255, 255, 0.45);
   margin-bottom: 30px;
 }
@@ -40,6 +40,15 @@
 .footer__container {
   padding-top: 75px;
   display: flex;
+
+  @include phones {
+    flex-flow: column wrap;
+
+    .footer__center__container {
+      margin-top: 45px;
+      margin-left: 0px;
+    }
+  }
 }
 .footer__copyright {
   display: flex;
@@ -57,6 +66,9 @@
   margin-left: 140px;
   diplay: flex;
   flex-flow: nowrap column;
+  flex-grow: 1;
+
+  
 }
 .footer {
   background: #252830;
@@ -65,12 +77,16 @@
 .footer__description {
   font-size: 16px;
   line-height: 30px;
-  margin-top: 48px;
-  margin-bottom: 40px;
+  max-width: 20rem;
+  margin-bottom: 20px;
 }
 .footer__center-menu {
   color: #fff;
   text-weight: 400;
+  justify-content: flex-start;
+  display: flex;
+
+ 
 }
 .footer__center-socials {
   display: flex;
@@ -86,4 +102,23 @@
     height: 20px;
     fill: rgba(255,255,255, 0.3);
   }
+}
+.footer__centerbottom__container{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin-top: 48px;
+
+  @include tablets {
+    flex-flow: wrap;
+
+    .footer__quote {
+      margin-top: 50px;
+    }
+  }
+}
+.footer__description__container{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }

@@ -63,6 +63,7 @@
     "last 2 versions"
   ],
   "dependencies": {
+    "babel-preset-vue": "^2.0.2",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
     "request": "^2.88.0",

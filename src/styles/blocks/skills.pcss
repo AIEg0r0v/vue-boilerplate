@@ -87,10 +87,21 @@
   } */
 
 }
-
+.backpack-pic {
+  @include tablets {
+    transform: scale(0.5);
+    
+  }
+}
 .backpack__style {
   width: 700px;
   margin-top: 100px;
+
+  @include tablets {
+    width: 100%;
+    margin-top: 0;
+    
+  }
 }
 
 .skill__circle {

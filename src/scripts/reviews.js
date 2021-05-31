@@ -26,7 +26,7 @@ const works = new Vue({
             disabledPrev: true,
             flickityOptions: {
                 initialIndex: 0,
-                groupCells: 2,
+                groupCells: 1,
                 prevNextButtons: false,
                 pageDots: false,
                 wrapAround: false,

@@ -1,7 +1,7 @@
 .skill {
   position: relative;
-  width: 166px;
-  height: 166px;
+  width: 100%;
+  /* height: 166px; */
   font-weight: 800;
   font-size: 18px;
   line-height: 25px;
@@ -23,8 +23,14 @@
 }
 .skills-row__list{
   display: flex;
+  width: 100%;
+
+
 }
 
+.skills-row__item {
+  width: 25%;
+}
 .values__title {
   display: flex;
   font-weight: 800;
@@ -87,6 +93,10 @@
   } */
 
 }
+.backpack {
+  display: flex;
+  align-items: center;
+}
 .backpack-pic {
   @include tablets {
     transform: scale(0.5);
@@ -94,7 +104,7 @@
   }
 }
 .backpack__style {
-  width: 700px;
+  width: 100%;
   margin-top: 100px;
 
   @include tablets {

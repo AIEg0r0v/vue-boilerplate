@@ -7,6 +7,10 @@
 }
 .thumbs {
   margin: 0px;
+
+  li {
+    position: relative;
+  }
 }
 
 .thumbs__pic {
@@ -14,6 +18,15 @@
 }
 
 .thumbs__item {
+  cursor: pointer;
+}
+.thumbs__link{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   &:hover{
     border: 3px;
     border-color: #dc9322;
@@ -22,13 +35,14 @@
       margin-bottom: 0px;
     }
   }
-}
-.thumbs__link{
-
 } 
 
 .active {
   border: 3px;
   border-color: #dc9322;
   border-style: solid;
+
+  & .thumbs__link:hover {
+      border: none;
+  }
 }

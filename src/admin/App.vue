@@ -1,20 +1,22 @@
 <template lang="pug">
-  headline(title="Admin Panel")
-    avatar(
-      :size="3.1" 
-      src="https://picsum.photos/300/300"
-      title="Alexander Egorov"
-    )
+  .app-container
+    headline(title="Admin Panel")
+      user(
+        :picture='require("../images/content/alex.jpg").default'
+        name="Alexander Egorov"
+      )
+    navigation
 </template>
 
 <script>
 import '../styles/main.pcss'
-import avatar from './components/avatar/avatar.vue'
+import user from './components/user/user.vue'
 import headline from './components/headline/headline.vue'
+import navigation from './components/navigation/navigation.vue'
 
 export default {
   components: {
-    avatar, headline
+    user, headline, navigation
   },
   setup() {
     

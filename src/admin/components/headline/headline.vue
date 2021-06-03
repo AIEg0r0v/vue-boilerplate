@@ -1,10 +1,11 @@
 <template lang="pug">
   .headline-component
-    .container.headline-container
-      slot
-      .headline-title {{title}}
-      .headline-btns
-        button(type="button").headline-btn Exit
+    .container
+      .headline-container
+        slot
+        .headline-title {{title}}
+        .headline-btns
+          button(type="button").headline-btn Exit
 </template>
 
 <script>

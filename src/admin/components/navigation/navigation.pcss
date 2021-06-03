@@ -1,0 +1,47 @@
+.navigation-component {
+  display: flex;
+}
+
+.list {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+.item {
+
+}
+.link {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  display: block;
+  align-items: center;
+  text-decoration: none;
+  padding: 2rem;
+  &:hover {
+    color: #383BCF;
+    position: relative;
+
+    &:after{
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left:0;
+      right:0;
+      height: 3px;
+      background: #383BCF;
+    }
+  }
+}
+.activeTab {
+  position: relative;
+  &:after{
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left:0;
+      right:0;
+      height: 3px;
+      background: #383BCF;
+    }
+}

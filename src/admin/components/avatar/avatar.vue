@@ -6,7 +6,6 @@
         alt="user picture"
         
       ).image
-    .avatar-title(v-if="title !==''") {{title}}
 </template>
 <script>
 export default {

@@ -1,1 +1,1 @@
-export {default} from "./navigation.vue";
+export {default} from "./user.vue";

@@ -1,29 +1,30 @@
 import skill from "./skill.vue";
-import { text, withKnobs } from "@storybook/addon-knobs";
+import { object, withKnobs } from "@storybook/addon-knobs";
 
 export default {
   title: "skill",
   components: { skill },
   decorators: [withKnobs]
 };
+const defaultSkill = {
+  name: "Azure",
+  value: 57,
+  id: 1
+};
 
 export const defaultView = () => ({
   components: { skill },
   props: {
-    picture: {
-      default: text("picture", require("../../../images/content/alex.jpg").default )
-    },
-    username: {
-      default: text("name", "Alexander Egorov")
+    skill: {
+      default: object("skill", defaultSkill)
     }
   },
   template: `
-    <skill :name="username" :picture="picture" />
+    <skill :skill="skill" />
   `,
 });
 
 defaultView.story = {
-  name: "Стандартный вид",
-  username: "Alexander Egorov",
-  picture: require("../../../images/content/alex.jpg").default
-}
+  name: "Default view",
+  skill: defaultSkill
+};

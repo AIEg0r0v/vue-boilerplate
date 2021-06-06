@@ -11,6 +11,9 @@
         .header
           .title Block "About Me"
           iconed-btn(type="iconed" title="Add group")
+        ul.categories
+          li(v-for="category in categories").category
+            category(:category="category")
 </template>
 
 <script>
@@ -19,10 +22,19 @@ import user from './components/user/user.vue'
 import headline from './components/headline/headline.vue'
 import navigation from './components/navigation/navigation.vue'
 import iconedBtn from './components/button/button.vue'
+import category from './components/category/category.vue'
 
 export default {
   components: {
-    user, headline, navigation, iconedBtn
+    user, headline, navigation, iconedBtn, category
+  },
+  data() {
+      return {
+          categories: []
+      }
+  },
+  created(){
+      this.categories = require('../data/skills.json')
   },
   setup() {
     

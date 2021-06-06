@@ -18,7 +18,17 @@
 }
 
 .app-container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+.categories {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.category {
+    width: calc(100%/2 - 2rem);
+    margin-right: 2rem;
 }

@@ -12,7 +12,7 @@
         min="0"
         max="100"
         maxlength="3" 
-      ).value %
+      ).value.value-input %
     .buttons
       icon(
         symbol="tick" 

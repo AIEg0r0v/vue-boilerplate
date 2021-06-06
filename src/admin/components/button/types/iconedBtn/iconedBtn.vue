@@ -1,8 +1,7 @@
-<template>
-  <button 
+<template lang="pug">
+  button( 
     v-on="$listeners"
-    class="button-component"
-  >{{title}}</button>
+  ).button-component.before-component(:style="measures") {{title}}
 </template>
 
 <script>
@@ -11,6 +10,18 @@ export default {
     title: {
       type: String,
       default: "Добавить группу"
+    },
+    size: {
+      type: String,
+      default: 1.25
+    },
+  },
+  computed: {
+    measures() {
+      const size = Number(this.size);
+      return {
+        '--button-size': `${size}rem`
+      }
     }
   }
 };

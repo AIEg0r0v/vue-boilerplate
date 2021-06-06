@@ -1,14 +1,23 @@
 <template lang="pug">
   .category-component
     card
-      editLine(
+      edit-line(
         slot="title", 
         v-model="category.name",
         defaultEditMode
-      ) Category Name 
-      ul(slot="content").skills
-        li.item(v-for="skill in category.skills" :key="skill.id") 
-          skill(:skill="skill")
+      ).category-title
+      template(slot="content")
+        ul.skills
+          li.item(
+            v-for="skill in category.skills" 
+            :key="skill.id"
+          ) 
+            skill(
+              :skill="skill"
+            )
+        skill-add-line(
+          
+        ).skills-add-line
 </template>
 
 <script>
@@ -16,6 +25,7 @@
 import card from "../card";
 import editLine from "../editLine";
 import skill from "../skill";
+import skillAddLine from "../skillAddLine";
 
 const defaultSkills = [
   {id: 0, name: "Skill 1", value: 25},
@@ -27,7 +37,7 @@ const defaultCategory = {
   skills: defaultSkills
 };
 export default {
-  components: { card, editLine, skill
+  components: { card, editLine, skill, skillAddLine
   },
   props: {
     category: {

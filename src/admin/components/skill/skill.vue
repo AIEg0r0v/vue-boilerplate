@@ -71,14 +71,14 @@ export default {
   },
   methods: {
     acceptChange(){
-      this.$emit('skillChanged', this.currentSkill);
+      this.$emit('changed', this.currentSkill);
     },
     rejectChange(){
       this.editMode = false;
       this.currentSkill = {...this.skill}
     },
     deleteSkill(){
-      this.$emit('skillDeleted', this.skill.id);
+      this.$emit('deleted', this.skill.id);
     }
   }
 }

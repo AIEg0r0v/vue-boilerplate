@@ -26,7 +26,7 @@ export const defaultView = () => ({
     }
   },
   template: `
-    <skill @skillChanged="onApprove" @skillDeleted="onRemove" :skill="skill" />
+    <skill @changed="onApprove" @deleted="onRemove" :skill="skill" />
   `,
   methods
 });

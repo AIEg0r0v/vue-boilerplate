@@ -5,7 +5,8 @@
         slot="title", 
         v-model="category.name",
         defaultEditMode
-        @remove="$emit('remove'), $event"
+        @remove="onCategoryDelete"
+        @approve="onCategoryUpdate"
       ).category-title
       template(slot="content")
         ul.skills
@@ -14,12 +15,12 @@
             :key="skill.id"
           ) 
             skill(
-              @skillDeleted="onSkillDelete"
-              @skillChanged="onSkillChange"
+              @deleted="onSkillDelete"
+              @changed="onSkillChange"
               :skill="skill"
             )
         skill-add-line(
-          @skillAdded="onSkillAdd"
+          @added="onSkillAdd"
         ).skills-add-line
 </template>
 
@@ -46,23 +47,25 @@ export default {
     }
   },
   methods: {
-    onSkillAdd(skill){
-      console.log('Adding a skill to a category');
-      console.log(skill);
-      this.category.skills.push(skill);
+    onSkillAdd(addedSkill){
+      this.$emit('skillAdded', {skill: addedSkill, categoryId: this.category.id});
+      // this.category.skills.push(addedSkill);
     },
-    onSkillChange(updatedSkill, event){
-      console.log('Changing a skill in a category');
-      console.log(skill);
-      console.log(event);
-      var skillToUpdate = this.category.skills.filter((skill) => { skill.id === updatedSkill.id })
-      skillToUpdate.name = updatedSkill.name;
-      skillToUpdate.value = updatedSkill.value;
+    onSkillChange: function (updatedSkill, event){
+      this.$emit('skillUpdated', {skill: updatedSkill, categoryId: this.category.id});
+      // var skillToUpdate = this.category.skills.filter((skill) => { skill.id === updatedSkill.id })
+      // skillToUpdate.name = updatedSkill.name;
+      // skillToUpdate.value = updatedSkill.value;
     },
     onSkillDelete(skillId){
-      console.log('Deleting a skill from a category');
-      console.log(skillId);
-      this.category.skills = this.category.skills.filter( (skill) => { skill.id !== skillId });
+      this.$emit('skillDeleted', {id: skillId, categoryId: this.category.id});
+      // this.category.skills = this.category.skills.filter( (skill) => { skill.id !== skillId });
+    },
+    onCategoryDelete(){
+      this.$emit('deleted', this.category.id)
+    },
+    onCategoryUpdate(name){
+      this.$emit('updated', this.category)
     }
 
   },

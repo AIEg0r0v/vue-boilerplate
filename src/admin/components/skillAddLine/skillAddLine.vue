@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     onAdd(){
-      this.$emit('skillAdded', {...this.currentSkill});
+      this.$emit('added', {...this.currentSkill});
       this.currentSkill.id = 0;
       this.currentSkill.name = "New Skill";
       this.currentSkill.value = 100;

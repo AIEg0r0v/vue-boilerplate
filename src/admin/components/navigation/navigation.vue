@@ -21,7 +21,7 @@ export default {
   props: {
     tabs: {
       type: Array,
-      default: defaultTabs
+      default: () => defaultTabs
     }
   },
   computed: {

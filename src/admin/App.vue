@@ -10,7 +10,7 @@
       .container
         .header
           .title Block "About Me"
-          iconed-btn(type="iconed" title="Add group")
+          iconed-btn(type="iconed" title="Add Category")
         ul.categories
           li(v-for="category in categories").category
             category(:category="category")

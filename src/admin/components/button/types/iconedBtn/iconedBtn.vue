@@ -13,7 +13,7 @@ export default {
     },
     size: {
       type: String,
-      default: 1.25
+      default: "1.25"
     },
   },
   computed: {

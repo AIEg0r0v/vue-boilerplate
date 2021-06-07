@@ -5,6 +5,7 @@
         slot="title", 
         v-model="category.name",
         defaultEditMode
+        @remove="$emit('remove'), $event"
       ).category-title
       template(slot="content")
         ul.skills
@@ -13,10 +14,12 @@
             :key="skill.id"
           ) 
             skill(
+              @skillDeleted="onSkillDelete"
+              @skillChanged="onSkillChange"
               :skill="skill"
             )
         skill-add-line(
-          
+          @skillAdded="onSkillAdd"
         ).skills-add-line
 </template>
 
@@ -27,31 +30,42 @@ import editLine from "../editLine";
 import skill from "../skill";
 import skillAddLine from "../skillAddLine";
 
-const defaultSkills = [
-  {id: 0, name: "Skill 1", value: 25},
-  {id: 1, name: "Skill 2", value: 77}
-];
-const defaultCategory = {
-  id: 0,
-  name: "Frontend / Backend",
-  skills: defaultSkills
-};
 export default {
   components: { card, editLine, skill, skillAddLine
   },
   props: {
     category: {
       type: Object,
-      default: () => defaultCategory,
+      default: () => {},
       required: true
     }
   },
   data(){
     return{
-      title: "New group name"
+     
     }
   },
-  
+  methods: {
+    onSkillAdd(skill){
+      console.log('Adding a skill to a category');
+      console.log(skill);
+      this.category.skills.push(skill);
+    },
+    onSkillChange(updatedSkill, event){
+      console.log('Changing a skill in a category');
+      console.log(skill);
+      console.log(event);
+      var skillToUpdate = this.category.skills.filter((skill) => { skill.id === updatedSkill.id })
+      skillToUpdate.name = updatedSkill.name;
+      skillToUpdate.value = updatedSkill.value;
+    },
+    onSkillDelete(skillId){
+      console.log('Deleting a skill from a category');
+      console.log(skillId);
+      this.category.skills = this.category.skills.filter( (skill) => { skill.id !== skillId });
+    }
+
+  },
   computed: {
     
   }

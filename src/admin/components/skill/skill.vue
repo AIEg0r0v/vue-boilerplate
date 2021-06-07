@@ -4,7 +4,7 @@
       app-input(
         v-model="currentSkill.name" 
         noSidePaddings 
-      ).name 
+      )
       app-input(
         v-model="currentSkill.value" 
         noSidePaddings
@@ -12,7 +12,7 @@
         min="0"
         max="100"
         maxlength="3" 
-      ).value.value-input %
+      ).value-input %
     .buttons
       icon(
         symbol="tick" 

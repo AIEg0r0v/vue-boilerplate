@@ -9,11 +9,14 @@ export const defaultView = () => ({
   components: { tagsAdder },
   data() {
     return {
-
+      tags: ["one", "two", "three"]
     }
   },
   template: `
-    <tags-adder title="Add tag" />
+    <div>
+      <pre>{{tags}}</pre>
+      <tags-adder title="Add tag" v-model="tags" />
+    </div>
   `
 });
 

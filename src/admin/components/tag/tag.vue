@@ -1,6 +1,6 @@
 <template lang="pug">
     .tag {{title}}
-      icon(v-if="cross" grayscale symbol="cross" @click="$emit('deleted', $event)").tag-icon
+      icon(v-if="cross" grayscale symbol="cross" v-on="$listeners").tag-icon
 </template>
 
 <script>

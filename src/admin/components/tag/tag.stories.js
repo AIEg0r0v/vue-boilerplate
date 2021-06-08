@@ -1,13 +1,10 @@
 import tag from "./tag.vue";
-import { action } from "@storybook/addon-actions";
+
 
 export default {
   title: "tag",
   components: {tag}
 }
-const methods = {
-  onDelete: action("onDelete"),
-};
 
 export const defaultView = () => ({
   components: { tag},
@@ -28,7 +25,7 @@ defaultView.story = {
 export const tagwithCrossView = () => ({
   components: { tag },
   template: `
-    <tag title="tag" cross @deleted="onDelete" />
+    <tag title="tag" cross />
   `,
   methods
 });

@@ -1,18 +1,17 @@
 <template lang="pug">
-  .work-component
+  .work-component(:class="{'work-component--disabled': disabled}")
     .work__header
       img(:src="work.image").work__header-image
-      .work__header-tags
-        ul.tags
-          li(
-            v-for="tag in work.tags" 
-            :key="tag"
-          ).tag
-            tag(:title="tag")
+      ul.work__header-tags
+        li(
+          v-for="tag in work.tags" 
+          :key="tag"
+        ).work__header-tag
+          tag(:title="tag")
     .work__body
       .work__body-title {{work.title}}
       .work__body-description {{work.description}}
-      .work__body-link {{work.link}}
+      a(:href="work.link").work__body-link {{work.link}}
     .work-footer
       icon( 
         title="Edit"
@@ -37,16 +36,16 @@ export default {
     icon, 
     tag
   },
-  data() {
-    return {
-      editMode: false
-    }
-  },
   props: {
     work: {
       type: Object,
       default: () => {},
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
   computed: {

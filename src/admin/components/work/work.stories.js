@@ -8,7 +8,7 @@ const methods = {
 };
 
 export default {
-  title: "Work",
+  title: "work",
   components: { work },
   decorators: [withKnobs]
 };
@@ -37,5 +37,24 @@ export const defaultView = () => ({
 
 defaultView.story = {
   name: "Default view",
+  work: defaultWork
+};
+
+
+export const disabledView = () => ({
+  components: { work },
+  props: {
+    work: {
+      default: object("work", defaultWork)
+    }
+  },
+  template: `
+    <work :work="work" disabled="true" @deleted="onRemove" @editRequested="onEditRequest" />
+  `,
+  methods
+});
+
+disabledView.story = {
+  name: "Disabled view",
   work: defaultWork
 };

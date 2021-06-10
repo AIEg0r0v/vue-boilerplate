@@ -4,17 +4,17 @@
       ul.list
         li(
           v-for="tab in tabs" 
-          :class="{activeTab: tab.active}"
+          :class="{activeTab: isActive(tab)}"
           :key="tab.id").item
-          a(:href="`/${tab.alias}`").link {{tab.title}}
+          router-link(tag="a" :to="tab.alias").link {{tab.title}}
 </template>
 
 
 <script>
 const defaultTabs = [
-{id: 0, title: "About", alias: "about", active: false},
-{id: 1, title: "Works", alias: "works", active: true},
-{id: 2, title: "Reviews", alias: "reviews", active: false},
+{id: 0, title: "About", alias: "about"},
+{id: 1, title: "Works", alias: "works"},
+{id: 2, title: "Reviews", alias: "reviews"},
 ];
 
 export default {
@@ -24,8 +24,10 @@ export default {
       default: () => defaultTabs
     }
   },
-  computed: {
-
+  methods: {
+    isActive(tab) {
+      return this.$route.path === tab.alias
+    }
   }
 }
 </script>

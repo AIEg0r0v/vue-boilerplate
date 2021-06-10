@@ -1,43 +1,37 @@
 <template lang="pug">
-  .app-container
-    headline(title="Admin Panel")
-      user(
-        :picture='require("../images/content/alex.jpg").default'
-        name="Alexander Egorov"
-      )
-    navigation(:tabs="navTabs")
-    .page-content
-      router-view
+  .container
+    .header
+      .title Block "About Me"
+      iconed-btn(type="iconed" title="Add Category" @click="addCategory")
+    ul.categories
+      li(v-for="category in categories").category
+        category(
+          :category="category"
+            @skillAdded="onSkillAdded"
+            @skillDeleted="onSkillDeleted"
+            @skillUpdated="onSkillUpdated"
+            @deleted="onCategoryDeleted"
+            @updated="onCategoryUpdated"
+        )
+      
+
 </template>
 
 <script>
-
-const defaultTabs = [
-{id: 0, title: "About", alias: "/admin/about", active: false},
-{id: 1, title: "Works", alias: "/admin/works", active: true},
-{id: 2, title: "Reviews", alias: "/admin/reviews", active: false},
-];
-
-import '../styles/main.pcss'
-import user from './components/user/user.vue'
-import headline from './components/headline/headline.vue'
-import navigation from './components/navigation/navigation.vue'
-import iconedBtn from './components/button/button.vue'
-import category from './components/category/category.vue'
-import work from "./components/work/work.vue";
+import iconedBtn from '../../components/button/button.vue'
+import category from '../../components/category/category.vue'
 
 export default {
   components: {
-    user, headline, navigation, iconedBtn, category, work
+    iconedBtn, category
   },
   data() {
       return {
-          categories: [],
-          navTabs: defaultTabs
+          categories: []
       }
   },
   created(){
-      this.categories = require('../data/skills.json');
+      this.categories = require('../../../data/skills.json');
   },
   methods: {
     onSkillAdded({categoryId, skill}) {
@@ -93,10 +87,7 @@ export default {
     addCategory(){
       this.categories.push({});
     }
-  },
-  setup() {
-    
-  },
+  }
 }
 </script>
-<style lang="postcss" scoped src="./app.pcss"></style>
+<style lang="postcss" scoped src="./about.pcss"></style>

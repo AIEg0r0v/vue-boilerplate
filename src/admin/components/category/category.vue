@@ -48,6 +48,7 @@ export default {
   },
   methods: {
     onSkillAdd(addedSkill){
+      console.log(this.category);
       this.$emit('skillAdded', {skill: addedSkill, categoryId: this.category.id});
       // this.category.skills.push(addedSkill);
     },

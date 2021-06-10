@@ -38,6 +38,7 @@ export default {
       console.log("onSkillAdded");
       console.log(categoryId, skill);
       var category = this.categories.filter( (c) => c.id === categoryId)[0];
+      console.log(category);
       var savedSkill = this.saveSkill(this.categories, skill)
       category.skills.push(savedSkill);
     },
@@ -79,13 +80,16 @@ export default {
       //assuming on saveSkill go to backend and save the skill. 
       //We are getting back a skill with a proper new id
       //this function is just facking it.
+      console.log(categories);
+      console.log(skill);
       var skillIds = categories.map( x => x.skills).flat().map( x => x.id);
       var lastId = skillIds.reduce((id, currentId) => {var maxId = currentId >= id ?  currentId : id; return maxId});
       skill.id = lastId + 1;
       return skill;
     },
     addCategory(){
-      this.categories.push({});
+      //come up with provisionary id for category
+      this.categories.push({id:0, skills:[]});
     }
   }
 }

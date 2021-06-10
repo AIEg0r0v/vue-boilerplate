@@ -1,11 +1,11 @@
-<template>
-  <div class="avatar-component" :style="measures">
-    <img 
-      class="image"
-      v-bind="$attrs"
-      alt="user picture"
-    />
-  </div>
+<template lang="pug">
+  .avatar-component
+    .avatar-wrapper(:style="measures")
+      img(
+        v-bind="$attrs"
+        alt="user picture"
+        
+      ).image
 </template>
 <script>
 export default {
@@ -13,6 +13,10 @@ export default {
     size: {
       type: String,
       default: "3"
+    },
+    title: {
+      type: String,
+      default: "Freddy Johanson"
     }
   },
   computed: {

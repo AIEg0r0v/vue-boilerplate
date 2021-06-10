@@ -6,9 +6,9 @@ module.exports = {
   addons: [
     "@storybook/addon-actions",
     "@storybook/addon-links",
-    "@storybook/addon-backgrounds/register",
-    "storybook-dark-mode/register",
-    "@storybook/addon-knobs/register",
+    "@storybook/addon-backgrounds",
+    "storybook-dark-mode",
+    "@storybook/addon-knobs",
     {
       name: "@storybook/addon-storysource",
       options: {

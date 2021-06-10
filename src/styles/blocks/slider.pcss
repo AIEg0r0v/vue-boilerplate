@@ -1,24 +1,45 @@
 .slider {
   width: 60%;
 
+  @include desktop {
+    width: 95%;
+  }
 }
 
 .slider__item {
   width: 50%;
-  height: 100%;
+
   margin-right: 20px;
 }
-
+.slider__title {
+  width: 50%
+}
 .slider__header{
   display: flex;
   margin-bottom: 80px;
+
+  @include phones {
+    flex-flow: wrap;
+    justify-content: center;
+  }
 }
 .slider__buttons{
   width: fit-content;
-  margin-left: 115px;
+  margin-left: 25px;
 }
 
 .flickity-viewport {
-  min-height: 300px;
+  min-height: 320px;
   transition: height 0.2s;
 }
+
+/* .slider__item:after{
+  content: "";
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  background: #8C8;
+  left:0;
+  z-index:-1;
+} */

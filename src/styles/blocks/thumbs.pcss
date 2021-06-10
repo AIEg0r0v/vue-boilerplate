@@ -1,0 +1,48 @@
+
+.works-preview__thumbs {
+  width: 180px;
+  position: relative;
+  margin-top: -28.25rem;
+  margin-left: 43.75rem;
+}
+.thumbs {
+  margin: 0px;
+
+  li {
+    position: relative;
+  }
+}
+
+.thumbs__pic {
+  
+}
+
+.thumbs__item {
+  cursor: pointer;
+}
+.thumbs__link{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &:hover{
+    border: 3px;
+    border-color: #dc9322;
+    border-style: solid;
+    &:last-child{
+      margin-bottom: 0px;
+    }
+  }
+} 
+
+.active {
+  border: 3px;
+  border-color: #dc9322;
+  border-style: solid;
+
+  & .thumbs__link:hover {
+      border: none;
+  }
+}

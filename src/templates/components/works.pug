@@ -50,7 +50,7 @@ script(type="text/x-template")#work-thumbs
                 :class="{active: currentWork.id === work.id}"   
                 @click="$emit('setCurrent', work)" 
             )
-                a(:href="work.link").thumbs__link
+                span.thumbs__link
                 img(:src="work.image").thumbs__pic
 
 script(type="text/x-template")#work-tags

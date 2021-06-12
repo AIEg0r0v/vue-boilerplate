@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     requestEdit(){
-      this.$emit('editRequested', this.work.id);
+      this.$emit('editRequested', this.work);
     },
     deleteWork(){
       this.$emit('deleted', this.work.id);

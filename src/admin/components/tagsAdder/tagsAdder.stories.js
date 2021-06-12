@@ -13,10 +13,7 @@ export const defaultView = () => ({
     }
   },
   template: `
-    <div>
-      <pre>{{tags}}</pre>
       <tags-adder title="Add tag" v-model="tags" />
-    </div>
   `
 });
 

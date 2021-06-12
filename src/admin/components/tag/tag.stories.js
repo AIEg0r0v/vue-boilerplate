@@ -26,8 +26,7 @@ export const tagwithCrossView = () => ({
   components: { tag },
   template: `
     <tag title="tag" cross />
-  `,
-  methods
+  `
 });
 
 tagwithCrossView.story = {

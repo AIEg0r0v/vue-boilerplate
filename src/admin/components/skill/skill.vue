@@ -72,6 +72,7 @@ export default {
   methods: {
     acceptChange(){
       this.$emit('changed', this.currentSkill);
+      this.editMode = false;
     },
     rejectChange(){
       this.editMode = false;

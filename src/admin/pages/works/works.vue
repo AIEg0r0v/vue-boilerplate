@@ -18,6 +18,7 @@
 import work from '../../components/work/work.vue'
 import squareBtn from "../../components/button/types/squareBtn/squareBtn.vue";
 // import squareBtn from "../../components/button/button.vue"; //<- this does not work!!!
+import { mapState, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -25,12 +26,23 @@ export default {
   },
   data() {
       return {
-        works:[]
+        newWork: {}
       }
   },
+  computed:{
+    ...mapState({
+      works: state => state.works.works
+    })
+  },
   methods: {
+    ...mapMutations(['loadWorks', 'addWork']),
+
+    onWorkCreated(){
+      this.addWork(newWork);
+    },
     onWorkCreate(){
       console.log('todo: create work');
+
     },
     updateImagesPath(works){
       return works.map(work => {
@@ -45,8 +57,9 @@ export default {
     }
   },
   created(){
-    const works =  require('../../../data/works.json');
-    this.works = this.updateImagesPath(works);
+    var works =  require('../../../data/works.json');
+    works = this.updateImagesPath(works);
+    this.loadWorks(works);
   }
   
 }

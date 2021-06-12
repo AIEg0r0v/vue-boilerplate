@@ -36,6 +36,7 @@ export default {
       return works.map(work => {
           var imagePath = require(`../../../images/content/${work.image}`).default;
           //temp fix
+          console.log(imagePath);
           imagePath = `http://localhost:8080/${imagePath}`
           
           work.image = imagePath;

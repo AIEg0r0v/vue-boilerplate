@@ -30,6 +30,7 @@ import card from "../card";
 import editLine from "../editLine";
 import skill from "../skill";
 import skillAddLine from "../skillAddLine";
+import {mapMutations} from "vuex";
 
 export default {
   components: { card, editLine, skill, skillAddLine
@@ -47,9 +48,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['addSkill']),
+
     onSkillAdd(addedSkill){
       console.log(this.category);
-      this.$emit('skillAdded', {skill: addedSkill, categoryId: this.category.id});
+      // this.$emit('skillAdded', {skill: addedSkill, categoryId: this.category.id});
+      this.addSkill({skill: addedSkill, categoryId: this.category.id});
       // this.category.skills.push(addedSkill);
     },
     onSkillChange: function (updatedSkill, event){

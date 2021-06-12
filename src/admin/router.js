@@ -6,9 +6,14 @@ Vue.use(VueRouter);
 import about from "./pages/about/about.vue"
 import works from "./pages/works/works.vue"
 import reviews from "./pages/reviews/reviews.vue"
+import login from "./pages/login/login.vue"
 
 
 const routes = [
+  {
+    path: '/admin/login',
+    component: login
+  },
   {
     path: '/admin',
     component: about

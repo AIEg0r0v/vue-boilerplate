@@ -76,3 +76,16 @@ typeView.story = {
   name: "Другой тип",
 };
 
+export const passwordView = () => ({
+  components: { appInput },
+  template: `
+    <app-input
+      type="password"
+      title="Password" 
+    />
+  `,
+});
+
+passwordView.story = {
+  name: "Password view",
+};

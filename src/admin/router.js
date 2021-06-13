@@ -11,26 +11,26 @@ import login from "./pages/login/login.vue"
 
 const routes = [
   {
-    path: '/admin/login',
+    path: '/login',
     component: login
   },
   {
-    path: '/admin',
-    component: about
+    path: '/',
+    component: login
   },
   {
-    path: '/admin/about',
-    component: about
+    path: '/about',
+    component: about          
   },
   {
-    path: '/admin/works',
+    path: '/works',
     name: '',
     component: works
   },
   {
-    path: '/admin/reviews',
+    path: '/reviews',
     component: reviews
   }
 ];
-
-export default new VueRouter({ routes, mode: 'history'});
+//history mode create a bunch of problems, so I disabled it for now
+export default new VueRouter({ routes});

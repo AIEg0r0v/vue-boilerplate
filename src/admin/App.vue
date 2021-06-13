@@ -13,9 +13,9 @@
 <script>
 
 const defaultTabs = [
-{id: 0, title: "About", alias: "/admin/about", active: false},
-{id: 1, title: "Works", alias: "/admin/works", active: true},
-{id: 2, title: "Reviews", alias: "/admin/reviews", active: false},
+{id: 0, title: "About", alias: "/about", active: false},
+{id: 1, title: "Works", alias: "/works", active: true},
+{id: 2, title: "Reviews", alias: "/reviews", active: false},
 ];
 
 import '../styles/main.pcss'

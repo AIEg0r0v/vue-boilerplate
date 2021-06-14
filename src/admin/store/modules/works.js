@@ -1,3 +1,5 @@
+import axios from '../../axios';
+
 const about = {
     state : {
         works: []
@@ -19,6 +21,9 @@ const about = {
         },
         loadWorks(state, works) {
             state.works = [...works];
+            axios.get('/works').then(response => {
+                console.log(response.data);
+            });
         },
     }
 }

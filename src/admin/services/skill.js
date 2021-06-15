@@ -1,7 +1,6 @@
 const skillService = {
     skillToLoftSchoolSkill(skill){
         let loftSchoolSkill = {
-            id: skill.id,
             percent: skill.value,
             title: skill.name
         };

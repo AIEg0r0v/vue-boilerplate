@@ -1,5 +1,6 @@
 import axios from '../../axios';
 import categoryService from '../../services/category';
+import skillService from '../../services/skill';
 
 const about = {
     state : {
@@ -18,12 +19,15 @@ const about = {
             
             var category = state.categories.filter( (c) => c.id === categoryId)[0];
             console.log(category);
-
-            var skillIds = state.categories.map( x => x.skills).flat().map( x => x.id);
-            var lastId = skillIds.reduce((id, currentId) => {var maxId = currentId >= id ?  currentId : id; return maxId});
-            skill.id = lastId + 1;
             
-            category.skills.push(skill);
+            var loftSchoolskill = skillService.skillToLoftSchoolSkill(skill)
+            loftSchoolskill.category = category.id;
+
+            axios.post('/skills/', loftSchoolskill).then(response => {
+                let createdLoftSchoolSkill = response.data;
+                var createdSkill = skillService.loftSchoolskillToSkill(createdLoftSchoolSkill);
+                category.skills.push(createdSkill);
+            });
         },
         
         deleteSkill(state, {categoryId, id}) {

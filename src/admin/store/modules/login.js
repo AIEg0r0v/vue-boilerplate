@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 
 const login = {
     state : {
-        userId: 0,
+        userId: window.localStorage.getItem('userId'),
         token: window.localStorage.getItem('token'),
         expiresAt: window.localStorage.getItem('expiresAt')
     },

@@ -121,7 +121,7 @@ export default {
   created(){
     var works =  require('../../../data/works.json');
     works = this.updateImagesPath(works);
-    this.loadWorks(works);
+    this.loadWorks(state.login.userid);
   }
   
 }

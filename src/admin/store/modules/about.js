@@ -1,3 +1,6 @@
+import axios from '../../axios';
+import categoryService from '../../services/category';
+
 const about = {
     state : {
         categories: []
@@ -62,8 +65,14 @@ const about = {
             state.categories.push({id:newCategoryId, skills:[]});
         },
 
-        loadCategories(state, categories) {
-            state.categories = [...categories];
+        loadCategories(state, userId) {
+            // state.categories = [...categories];
+            console.log('requesting categories for user' + userId);
+            axios.get(`/categories/${userId}`).then(response => {
+                let loftSchoolCategories = response.data;
+                state.categories = loftSchoolCategories.map(category => 
+                    categoryService.loftSchoolCategoryToCategory(category));
+            });
         }
     }
 }

@@ -28,12 +28,13 @@ export default {
   },
   computed:{
     ...mapState({
-      categories: state => state.about.categories
+      categories: state => state.about.categories,
+      userid: state => state.login.userId
     })
   },
   created(){
       var categories = require('../../../data/skills.json');
-      this.loadCategories(categories);
+      this.loadCategories(this.userid);
   },
   methods: {
     

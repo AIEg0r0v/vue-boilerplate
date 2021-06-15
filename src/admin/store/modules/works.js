@@ -1,4 +1,6 @@
 import axios from '../../axios';
+import skillService from '../../services/skill';
+import categoryService from '../../services/category';
 
 const about = {
     state : {
@@ -19,10 +21,11 @@ const about = {
         deleteWork(state, workId){
             state.works = state.works.filter(x => x.id !== workId);
         },
-        loadWorks(state, works) {
-            state.works = [...works];
-            axios.get('/works/463').then(response => {
-                console.log(response.data);
+        loadWorks(state, userId) {
+            // state.works = [...works];
+            axios.get(`/categories/${userId}`).then(response => {
+                let loftSchoolCategories = response.data;
+                state.works = categoryService.loftSchoolCategoryToCategory(loftSchoolCategories);
             });
         },
     }

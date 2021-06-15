@@ -21,7 +21,7 @@ const about = {
         },
         loadWorks(state, works) {
             state.works = [...works];
-            axios.get('/works').then(response => {
+            axios.get('/works/463').then(response => {
                 console.log(response.data);
             });
         },

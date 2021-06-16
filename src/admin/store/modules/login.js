@@ -1,5 +1,6 @@
 import axios from '../../axios';
 import jwt_decode from "jwt-decode";
+import router from '../../router';
 
 const login = {
     state : {
@@ -8,7 +9,12 @@ const login = {
         expiresAt: window.localStorage.getItem('expiresAt')
     },
     actions: {},
-    getters: {},
+    getters: {
+        isLoggedIn: state => {
+            //shaky stuff
+            return state.token == null || state.userId == null;
+        }
+    },
     mutations: {
         login(state, user){
             console.log('login');
@@ -22,6 +28,9 @@ const login = {
                 window.localStorage.setItem('expirestAt', state.expiresAt);
                 window.localStorage.setItem('userId', state.userId);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${state.token}`;
+              
+                router.replace(window.sessionStorage.getItem('redirectPath') || '/');
+                window.sessionStorage.removeItem('redirectPath');
             });
         },
         refreshToken(state){
@@ -36,6 +45,8 @@ const login = {
                 window.localStorage.setItem('expirestAt', state.expiresAt);
                 window.localStorage.setItem('userId', state.userId);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${state.token}`;
+
+                
             });
         },
         logout(){
@@ -45,9 +56,9 @@ const login = {
                 state.userId = 0;
                 state.token = '';
                 state.expiresAt = 0; //setting expiration time a bit before hands 
-                window.localStorage.setItem('token', state.token);
-                window.localStorage.setItem('expirestAt', state.expiresAt);
-                window.localStorage.setItem('userId', state.userId);
+                window.localStorage.removeItem('token');
+                window.localStorage.removeItem('expirestAt');
+                window.localStorage.removeItem('userId');
             });
         }
     }

@@ -33,8 +33,10 @@ const about = {
         deleteSkill(state, {categoryId, id}) {
             console.log("onSkillDeleted");
             console.log(categoryId, id);
-            var category = state.categories.filter( (c) => c.id === categoryId)[0];
-            category.skills = category.skills.filter( (skill) => skill.id !== id );
+            axios.delete(`/skills/${id}`).then(response => {
+                var category = state.categories.filter( (c) => c.id === categoryId)[0];
+                category.skills = category.skills.filter( (skill) => skill.id !== id );
+            });
         },
 
         updateSkill(state, {categoryId, skill}) {
@@ -44,12 +46,23 @@ const about = {
             var skillToUpdate = category.skills.filter( (s) => s.id === skill.id)[0];
             skillToUpdate.name = skill.name;
             skillToUpdate.value = skill.value;
+            
+            var updatedLoftSchoolSkill = skillService.skillToLoftSchoolSkill(skill);
+            updatedLoftSchoolSkill.category = categoryId;
+
+            axios.post(`/skills/${skill.id}`, updatedLoftSchoolSkill).then(response => {
+                skillToUpdate.name = skill.name;
+                skillToUpdate.value = skill.value;
+            });
         },
 
         deleteCategory(state, categoryId) {
             console.log("onCategoryDeleted");
             console.log(categoryId);
-            state.categories = state.categories.filter( (category) => category.id !== categoryId );
+            
+            axios.delete(`/categories/${categoryId}`).then(response => {
+                state.categories = state.categories.filter( (category) => category.id !== categoryId );
+            });
         },
 
         updateCategory(state, category) {
@@ -58,19 +71,20 @@ const about = {
             var categoryToUpdate = state.categories.filter(c => c.id === category.id)[0];
             categoryToUpdate.name = category.name;
             categoryToUpdate.skills = category.skills;
+
+            axios.post(`/categories/${category.id}?title=${category.name}`).then(response => {
+                categoryToUpdate.name = category.name;
+            });
         },
 
         addCategory(state){
-            var newCategoryId = state.categories.map(x => x.id).reduce(
-                (id, currentId) => {
-                    var maxId = currentId >= id ?  currentId : id; return maxId
-                }) + 1;
-
-            state.categories.push({id:newCategoryId, skills:[]});
+            const tempName = 'Category Placeholder name';
+            axios.post(`/categories?title=${tempName}`).then(response => {
+                state.categories.push({id:response.data.id, name:tempName, skills:[]}); 
+            });
         },
 
         loadCategories(state, userId) {
-            // state.categories = [...categories];
             console.log('requesting categories for user' + userId);
             axios.get(`/categories/${userId}`).then(response => {
                 let loftSchoolCategories = response.data;

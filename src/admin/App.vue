@@ -1,6 +1,6 @@
 <template lang="pug">
   .app-container
-    headline(title="Admin Panel")
+    headline(title="Admin Panel" )
       user(
         :picture='require("../images/content/alex.jpg").default'
         name="Alexander Egorov"
@@ -37,13 +37,11 @@ export default {
       }
   },
   created(){
-      this.categories = require('../data/skills.json');
   },
   methods: {
  
   },
-  setup() {
-    
+  computed: {
   },
 }
 </script>

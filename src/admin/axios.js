@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from './router'
 
 const instance = axios.create({
   baseURL: 'https://webdev-api.loftschool.com'
@@ -10,26 +11,19 @@ if(token) {
   instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
-// instance.interceptors.response.use(
-//   response => response,
-//   async error => {
+instance.interceptors.response.use(
+  response => response,
+  error => {
 
-//     const originalRequest = error.config;
+    const originalRequest = error.config;
 
-    // if(error.response.status === 401)
-    // {
-    //   const response = await axios.post("/refreshToken");
-    //   const newToken = response.data.token;
+    if(error.response.status === 401)
+    {
+      router.replace('/login');
+    }
 
-    //   window.localStorage.setItem('token', newToken);
-    //   instance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-    //   originalRequest.headers.common['Authorization'] = `Bearer ${newToken}`;
-      
-    //   return instance(originalRequest)
-    // }
-
-//     return Promise.reject(error);
-//   }
-// );
+    return Promise.reject(error);
+  }
+);
 
 export default instance;

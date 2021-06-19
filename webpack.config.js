@@ -145,6 +145,8 @@ module.exports = (env, argv) => {
         filename: "[name].[contenthash].css",
         chunkFilename: "[contenthash].css",
       }),
+      new SpriteLoaderPlugin({ plainSprite: true }),
+      new VueLoaderPlugin(),
     ]);
 
     config.optimization = {};

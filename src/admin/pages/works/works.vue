@@ -48,10 +48,9 @@
 import work from '../../components/work/work.vue'
 import card from '../../components/card/card.vue'
 import tagsAdder from '../../components/tagsAdder/tagsAdder.vue'
-// import squareBtn from "../../components/button/types/squareBtn/squareBtn.vue";
 import appInput from "../../components/input/input.vue"
 import defaultBtn from "../../components/button/types/defaultBtn/defaultBtn.vue";
-import squareBtn from "../../components/button/button.vue"; //<- this does not work!!!
+import squareBtn from "../../components/button/button.vue"; 
 import { mapState, mapMutations } from "vuex";
 
 export default {

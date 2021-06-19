@@ -7,8 +7,8 @@
       pre {{expiresAt}}
       pre {{userId}}
       .login__form
-        app-input(title="Username" v-model="user.name").login__form-username
-        app-input(title="Password" type="password" v-model="user.password").login__form-password
+        app-input(title="Username" icon="user" v-model="user.name").login__form-username
+        app-input(title="Password" icon="key" type="password" v-model="user.password").login__form-password
         iconed-btn(title="login" @click="onFormSubmit").login__form-submitBtn
 </template>
 

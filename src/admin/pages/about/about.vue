@@ -33,9 +33,9 @@ export default {
     })
   },
   created(){
-      var categories = require('../../../data/skills.json');
       this.loadCategories(this.userid);
   },
+
   methods: {
     
     ...mapMutations(['loadCategories', 'addCategory']),

@@ -19,18 +19,31 @@ instance.interceptors.response.use(
   async error => {
 
     const originalRequest = error.config;
-
+    console.log(originalRequest);
     if(error.response.status === 401)
     {
-      const response = await axios.post(`${apiBaseUrl}/refreshToken`);
-      const newToken = response.data.token;
+      var newToken;
+      await axios.post(`${apiBaseUrl}/refreshToken`, {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        } 
+      }).then( c => {
+          console.log("Successfully refreshed token");
+          newToken = c.data.token;
+        }, e => {
+          console.log('Unable to refresh token');
+          if(e.response.status === 400) {
+            console.log(e.response.data[0]);
+          }
+          router.replace('/login')
+        });
+      
 
       window.localStorage.setItem('token', newToken);
       instance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-      originalRequest.headers.common['Authorization'] = `Bearer ${newToken}`;
+      originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
       
       return instance(originalRequest)
-      // router.replace('/login');
     }
 
     return Promise.reject(error);

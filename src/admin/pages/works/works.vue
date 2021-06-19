@@ -5,11 +5,17 @@
     card(title="Edit work" v-if="editMode").edit__work
       template(slot="content")
         .edit__work-content-container
-          .image__upload-container
-            .image__upload-description Drag image here or press UPLOAD button to upload image
+          .image__upload-container(
+            :style="{backgroundImage: `url(${newWork.preview})`}"
+            :class="[{'image__upload-container--hovered': hovered}]"
+          )
+            .image__upload-description(
+              :class="[{'image__upload-description--active': newWork.preview}]"
+            ) Drag image here or press UPLOAD button to upload image
             defaultBtn(
               title="UPLOAD" 
-              @click="uploadImage"
+              typeAttr="file"
+              @change="handleFileUpload"
             ).image__upload-button
           .edit__work-container
             app-input(
@@ -60,14 +66,16 @@ export default {
   data() {
       return {
         editMode: true,
+        hovered: true,
         newWork: {
-          id:0, tags: [], title: '', description: '', link: ''
+          id:0, tags: [], title: '', description: '', link: '', image: {}, preview: '' 
         }
       }
   },
   computed:{
     ...mapState({
-      works: state => state.works.works
+      works: state => state.works.works,
+      userid: state => state.login.userId
     })
   },
   methods: {
@@ -98,6 +106,19 @@ export default {
           return work;
       })
     },
+    handleFileUpload(event){
+      const file = event.target.files[0];
+      this.newWork.image = file;
+      this.renderImage(this.newWork.image);
+    },
+    renderImage(file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onloadend = () => {
+        this.newWork.preview = reader.result;
+      }
+    },
     uploadImage(){
       console.log("open dialog to upload file");
     },
@@ -118,9 +139,9 @@ export default {
     }
   },
   created(){
-    var works =  require('../../../data/works.json');
-    works = this.updateImagesPath(works);
-    this.loadWorks(state.login.userid);
+    // var works =  require('../../../data/works.json');
+    // works = this.updateImagesPath(works);
+    this.loadWorks(this.userid);
   }
   
 }

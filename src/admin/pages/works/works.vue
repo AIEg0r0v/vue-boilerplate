@@ -2,7 +2,12 @@
   .container
     .header
       .title Block "Works"
-    editWork(v-if="editMode" :work="newWork")
+    editWork(
+      v-if="editMode" 
+      :work="newWork"
+      @editCancelled="editMode = false"
+      @editCompleted="editMode = false"
+    )
     ul.works
       li().work
         square-btn( 

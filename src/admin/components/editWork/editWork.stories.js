@@ -1,5 +1,11 @@
 import editWork from "./editWork.vue";
 import { object, withKnobs } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
+
+const methods = {
+  onEditCancelled: action("onEditCancelled"),
+  onEditCompleted: action("onEditCompleted")
+};
 
 export default {
   title: "edit work",
@@ -24,8 +30,9 @@ export const defaultView = () => ({
     }
   },
   template: `
-    <edit-work :work="work" />
-  `
+    <edit-work :work="work" @editCancelled="onEditCancelled" @editCompleted="onEditCompleted"/>
+  `,
+  methods
 });
 
 defaultView.story = {

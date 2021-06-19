@@ -37,7 +37,7 @@
               v-model="work.tags"
             ).edit__work-input
             .edit__work-buttons
-              defaultBtn(title="Cancel" plain @click="onWorkUpdateCanceled").edit__work-cancelbtn
+              defaultBtn(title="Cancel" plain @click.prevent="onWorkUpdateCanceled").edit__work-cancelbtn
               defaultBtn(title="SAVE"  typeAttr="submit").edit__work-savebtn     
 </template>
 
@@ -114,8 +114,7 @@ export default {
       console.log("open dialog to upload file");
     },
     onWorkUpdateCanceled(){
-      console.log("onWorkUpdateCanceled");
-      this.editMode = false;
+      this.$emit("editCancelled");
     },
     async handleSubmit(){
       console.log("handleSubmit");
@@ -124,7 +123,7 @@ export default {
       } else {
         await this.addW(this.work);
       }
-      this.editMode = false;
+      this.$emit("editCompleted");
     }
   }
 }

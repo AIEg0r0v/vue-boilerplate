@@ -1,6 +1,6 @@
 import axios from '../../axios';
 import workService from '../../services/work';
-import regeneratorRuntime from "regenerator-runtime";
+// import regeneratorRuntime from "regenerator-runtime";
 
 const works = {
     state : {
@@ -38,12 +38,7 @@ const works = {
             const loftSchoolWork = workService.workToLoftSchoolWork(newWork);
             
             console.log(loftSchoolWork);
-            // formData.append('title', loftSchoolWork.title);
-            // formData.append('techs', loftSchoolWork.techs);
-            // formData.append('photo', loftSchoolWork.photo);
-            // formData.append('link', loftSchoolWork.link);
-            // formData.append('description', loftSchoolWork.description);
-
+        
             Object.keys(loftSchoolWork).forEach( item => {
                 console.log(`${item} ` + loftSchoolWork[item]);
                 formData.append(item, loftSchoolWork[item]);

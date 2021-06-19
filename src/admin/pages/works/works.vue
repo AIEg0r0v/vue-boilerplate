@@ -2,46 +2,7 @@
   .container
     .header
       .title Block "Works"
-    form.form(@submit.prevent="handleSubmit")
-      card(title="Edit work" v-if="editMode").edit__work
-        template(slot="content")
-          .edit__work-content-container
-            .image__upload-container(
-              :style="{backgroundImage: `url(${newWork.preview})`}"
-              :class="[{'image__upload-container--hovered': hovered}]"
-              @dragover="handleDragOver"
-              @dragleave="hovered = false"
-              @drop="handleFileUpload"
-            )
-              .image__upload-description(
-                :class="[{'image__upload-description--active': newWork.preview}]"
-              ) Drag image here or press UPLOAD button to upload image
-              defaultBtn(
-                title="UPLOAD" 
-                typeAttr="file"
-                @change="handleFileUpload"
-              ).image__upload-button
-            .edit__work-container
-              app-input(
-                title="Name"
-                v-model="newWork.title"
-              ).edit__work-input.edit__work-title
-              app-input(
-                title="Link"
-                v-model="newWork.link"
-              ).edit__work-input.edit__work-link
-              app-input(
-                title="Description"
-                fieldType="textarea"
-                v-model="newWork.description"
-              ).edit__work-input.edit__work-description
-              tags-adder(
-                title="Add tag" 
-                v-model="newWork.tags"
-              ).edit__work-input
-              .edit__work-buttons
-                defaultBtn(title="Cancel" plain @click="onWorkUpdateCanceled").edit__work-cancelbtn
-                defaultBtn(title="SAVE"  typeAttr="submit").edit__work-savebtn
+    editWork(v-if="editMode" :work="newWork")
     ul.works
       li().work
         square-btn( 
@@ -61,17 +22,17 @@ import tagsAdder from '../../components/tagsAdder/tagsAdder.vue'
 import appInput from "../../components/input/input.vue"
 import defaultBtn from "../../components/button/types/defaultBtn/defaultBtn.vue";
 import squareBtn from "../../components/button/button.vue"; 
+import editWork from "../../components/editWork/editWork.vue"; 
 import { mapState, mapMutations, mapActions } from "vuex";
-import regeneratorRuntime from "regenerator-runtime";
+// import regeneratorRuntime from "regenerator-runtime";
 
 export default {
   components: {
-    work, squareBtn, defaultBtn, card, tagsAdder, appInput
+    work, squareBtn, defaultBtn, card, tagsAdder, appInput, editWork
   },
   data() {
       return {
         editMode: true,
-        hovered: false,
         newWork: {
           id:0, tags: [], title: '', description: '', link: '', image: {}, preview: '' 
         }
@@ -84,79 +45,19 @@ export default {
     })
   },
   methods: {
-    ...mapMutations(['loadWorks', 'addWork', 'updateWork', 'deleteWork' ,'ADD_WORK','SET_WORKS']),
-    ...mapActions(
-      ["addW"]
-    ),
+    ...mapMutations(['loadWorks', 'deleteWork' , 'SET_WORKS']),
     onEditRequested(work){
       this.newWork = {...work};
       console.log(this.newWork);
       this.editMode = true;
     },
-    onWorkCreated(){
-      this.addWork(newWork);
-    },
     onWorkCreate(){
       console.log('todo: create work');
-
       this.newWork = {id:0, tags: [], title: '', description: '', link: ''};
       this.editMode = true;
-    },
-    updateImagesPath(works){
-      return works.map(work => {
-          var imagePath = require(`../../../images/content/${work.image}`).default;
-          //temp fix
-          console.log(imagePath);
-          imagePath = `http://localhost:8080/${imagePath}`
-          
-          work.image = imagePath;
-          return work;
-      })
-    },
-    handleDragOver(event){
-      event.preventDefault();
-      console.log("drag over");
-      this.hovered = true;
-    },
-    handleFileUpload(event){
-      event.preventDefault();
-      const file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
-      this.newWork.image = file;
-      this.renderImage(this.newWork.image);
-      this.hovered = false;
-    },
-    renderImage(file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onloadend = () => {
-        this.newWork.preview = reader.result;
-      };
-
-      reader.onerror = () => {
-        console.log("error while reading file")
-      };
-
-      reader.onabort = () => {
-        console.log("aborting file read")
-      };
-    },
-    uploadImage(){
-      console.log("open dialog to upload file");
-    },
-    onWorkUpdateCanceled(){
-      console.log("onWorkUpdateCanceled");
-      this.editMode = false;
-    },
-    async handleSubmit(){
-      console.log("handleSubmit");
-      await this.addW(this.newWork);
-      this.editMode = false;
     }
   },
   created(){
-    // var works =  require('../../../data/works.json');
-    // works = this.updateImagesPath(works);
     this.loadWorks(this.userid);
   }
   

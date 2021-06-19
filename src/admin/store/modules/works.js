@@ -16,11 +16,20 @@ const works = {
         SET_WORKS(state, works){
             state.works = works;
         },
-        updateWork(state, work){
-            var updatedWork = state.works.filter(x => x.id === work.id);
-            updatedWork = {...work};
+        UPDATE_WORK(state, updatedWork){
+            console.log("This should update WORK in Works");
+            console.log(updatedWork);
+            //todo handle update better and potential unmatch
+            var work = state.works.filter(x => x.id === updatedWork.id)[0];
+            
+            console.log(work);
+            Object.keys(work).forEach( item => {
+                work[item] = updatedWork[item];
+            });
+            
+            console.log(work);
         },
-        deleteWork(state, workId){
+        DELETE_WORK(state, workId){
             state.works = state.works.filter(x => x.id !== workId);
         },
         loadWorks(state, userId) {
@@ -33,16 +42,15 @@ const works = {
     },
     actions: {
         async addW({commit}, newWork) {
-            console.log(newWork); //validation here. size and file type
+            //validation here. size and file type
             const formData = new FormData();
             const loftSchoolWork = workService.workToLoftSchoolWork(newWork);
             
             console.log(loftSchoolWork);
         
             Object.keys(loftSchoolWork).forEach( item => {
-                console.log(`${item} ` + loftSchoolWork[item]);
                 formData.append(item, loftSchoolWork[item]);
-            })
+            });
 
             try{
                 const {data} = await axios.post(`/works`, formData);
@@ -52,12 +60,33 @@ const works = {
                 console.log(error);
             }
         },
+        async updateWork({commit}, updatedWork) {
+            const formData = new FormData();
+            const loftSchoolWork = workService.workToLoftSchoolWork(updatedWork);
+            
+            console.log('updating work');
+            console.log(updatedWork);
+        
+            Object.keys(loftSchoolWork).forEach( item => {
+                formData.append(item, loftSchoolWork[item]);
+            })
 
+            try{
+                const {data} = await axios.post(`/works/${updatedWork.id}`, formData);
+                console.log(data); //handle not success, but error
+                const work = workService.loftSchoolWorkTowork(data.work);
+                console.log(work);
+                commit("UPDATE_WORK", work);
+            } catch(error) {
+                console.log(error);
+            }
+        },
         async fetch({commit}) {
             try {
                 const userId = window.localStorage.getItem('userId');
-                const { data } = await axios.get(`works/${userId}`);
-                commit("SET_WORKS", data);
+                const { data } = await axios.get(`/works/${userId}`);
+                const works = data.map(loftSchoolWork => workService.loftSchoolWorkTowork(loftSchoolWork));
+                commit("SET_WORKS", works);
             } catch(error) {
                 console.log(error);
             }

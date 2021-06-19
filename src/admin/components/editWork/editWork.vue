@@ -71,14 +71,16 @@ export default {
   },
   computed: {
     cover() {
-      const isWorkPreviewSet = 'preview' in this.work && this.work.preview && this.work.preview.length !== 0;
-      return isWorkPreviewSet ? this.work.preview : `${serverUrl}/${this.work.image}`;
+      return this.isWorkPreviewSet ? this.work.preview : `${serverUrl}/${this.work.image}`;
+    },
+    isWorkPreviewSet(){
+      return 'preview' in this.work && this.work.preview && this.work.preview.length !== 0;
     }
   },
   methods: {
-    ...mapMutations(['loadWorks', 'addWork', 'updateWork', 'deleteWork' ,'ADD_WORK','SET_WORKS']),
+    ...mapMutations(['loadWorks', 'addWork']),
     ...mapActions(
-      ["addW"]
+      ["addW", "updateWork"]
     ),
     handleDragOver(event){
       event.preventDefault();
@@ -117,7 +119,11 @@ export default {
     },
     async handleSubmit(){
       console.log("handleSubmit");
-      await this.addW(this.work);
+      if(this.work.id !== 0) {
+        await this.updateWork(this.work);
+      } else {
+        await this.addW(this.work);
+      }
       this.editMode = false;
     }
   }

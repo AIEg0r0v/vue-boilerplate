@@ -2,7 +2,7 @@ import axios from '../../axios';
 import workService from '../../services/work';
 import regeneratorRuntime from "regenerator-runtime";
 
-const about = {
+const works = {
     state : {
         works: []
     },
@@ -32,26 +32,43 @@ const about = {
         },
     },
     actions: {
-        async addEventListener({commit}, newWork) {
+        async addW({commit}, newWork) {
+            console.log(newWork); //validation here. size and file type
+            const formData = new FormData();
+            const loftSchoolWork = workService.workToLoftSchoolWork(newWork);
+            
+            console.log(loftSchoolWork);
+            // formData.append('title', loftSchoolWork.title);
+            // formData.append('techs', loftSchoolWork.techs);
+            // formData.append('photo', loftSchoolWork.photo);
+            // formData.append('link', loftSchoolWork.link);
+            // formData.append('description', loftSchoolWork.description);
+
+            Object.keys(loftSchoolWork).forEach( item => {
+                console.log(`${item} ` + loftSchoolWork[item]);
+                formData.append(item, loftSchoolWork[item]);
+            })
+
             try{
-                const {data} = await this.$axios.post("/works");
-                commit("ADD_WORK", {data});
+                const {data} = await axios.post(`/works`, formData);
+                const work = workService.loftSchoolWorkTowork(data);
+                commit("ADD_WORK", {work});
             } catch(error) {
-                console.log("error");
+                console.log(error);
             }
         },
 
         async fetch({commit}) {
             try {
                 const userId = window.localStorage.getItem('userId');
-                const { data } = await this.$axios.get(`works/${userId}`);
+                const { data } = await axios.get(`works/${userId}`);
                 commit("SET_WORKS", data);
             } catch(error) {
-                console.log("error");
+                console.log(error);
             }
         }
     },
     getters: {}
 }
 
-export default about;
+export default works;

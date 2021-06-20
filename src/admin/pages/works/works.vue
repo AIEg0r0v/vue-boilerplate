@@ -6,7 +6,7 @@
       v-if="editMode" 
       :work="newWork"
       @editCancelled="editMode = false"
-      @editCompleted="editMode = false"
+      @editCompleted="onEditCompleted"
     )
     ul.works
       li().work
@@ -28,7 +28,7 @@ import appInput from "../../components/input/input.vue"
 import defaultBtn from "../../components/button/types/defaultBtn/defaultBtn.vue";
 import squareBtn from "../../components/button/button.vue"; 
 import editWork from "../../components/editWork/editWork.vue"; 
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 // import regeneratorRuntime from "regenerator-runtime";
 
 export default {
@@ -50,7 +50,8 @@ export default {
     })
   },
   methods: {
-    ...mapMutations(['loadWorks', 'deleteWork' , 'SET_WORKS']),
+    ...mapActions(["addWork", "updateWork", "deleteWork", "fetchWorks"]),
+
     onEditRequested(work){
       this.newWork = {...work};
       console.log(this.newWork);
@@ -60,10 +61,19 @@ export default {
       console.log('todo: create work');
       this.newWork = {id:0, tags: [], title: '', description: '', link: ''};
       this.editMode = true;
+    },
+    async onEditCompleted(work){
+
+      if(work.id !== 0) {
+        await this.updateWork(work);
+      } else {
+        await this.addWork(work);
+      }
+      this.editMode = false;
     }
   },
-  created(){
-    this.loadWorks(this.userid);
+  async created(){
+    await this.fetchWorks(this.userid);
   }
   
 }

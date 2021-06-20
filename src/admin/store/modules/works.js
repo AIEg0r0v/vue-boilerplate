@@ -31,17 +31,10 @@ const works = {
         },
         DELETE_WORK(state, workId){
             state.works = state.works.filter(x => x.id !== workId);
-        },
-        loadWorks(state, userId) {
-            axios.get(`/works/${userId}`).then(response => {
-                let loftSchoolWorks = response.data;
-                state.works = loftSchoolWorks.map( 
-                    loftSchoolWork => workService.loftSchoolWorkTowork(loftSchoolWork));
-            });
-        },
+        }
     },
     actions: {
-        async addW({commit}, newWork) {
+        async addWork({commit}, newWork) {
             //validation here. size and file type
             const formData = new FormData();
             const loftSchoolWork = workService.workToLoftSchoolWork(newWork);
@@ -56,6 +49,15 @@ const works = {
                 const {data} = await axios.post(`/works`, formData);
                 const work = workService.loftSchoolWorkTowork(data);
                 commit("ADD_WORK", {work});
+            } catch(error) {
+                console.log(error);
+            }
+        },
+        async deleteWork({commit}, workId) {
+            
+            try{
+                await axios.delete(`/works/${workId}`);
+                commit("DELETE_WORK", workId);
             } catch(error) {
                 console.log(error);
             }
@@ -81,9 +83,8 @@ const works = {
                 console.log(error);
             }
         },
-        async fetch({commit}) {
+        async fetchWorks({commit}, userId) {
             try {
-                const userId = window.localStorage.getItem('userId');
                 const { data } = await axios.get(`/works/${userId}`);
                 const works = data.map(loftSchoolWork => workService.loftSchoolWorkTowork(loftSchoolWork));
                 commit("SET_WORKS", works);

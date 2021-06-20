@@ -49,8 +49,6 @@ import tagsAdder from '../../components/tagsAdder/tagsAdder.vue'
 import appInput from "../../components/input/input.vue"
 import defaultBtn from "../../components/button/types/defaultBtn/defaultBtn.vue";
 import squareBtn from "../../components/button/button.vue"; 
-import { mapMutations, mapActions } from "vuex";
-
 
 const serverUrl = 'https://webdev-api.loftschool.com'
 export default {
@@ -78,10 +76,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['loadWorks', 'addWork']),
-    ...mapActions(
-      ["addW", "updateWork"]
-    ),
     handleDragOver(event){
       event.preventDefault();
       console.log("drag over");
@@ -110,20 +104,11 @@ export default {
         console.log("aborting file read")
       };
     },
-    uploadImage(){
-      console.log("open dialog to upload file");
-    },
     onWorkUpdateCanceled(){
       this.$emit("editCancelled");
     },
     async handleSubmit(){
-      console.log("handleSubmit");
-      if(this.work.id !== 0) {
-        await this.updateWork(this.work);
-      } else {
-        await this.addW(this.work);
-      }
-      this.$emit("editCompleted");
+      this.$emit("editCompleted", this.work);
     }
   }
 }

@@ -38,7 +38,7 @@ instance.interceptors.response.use(
           router.replace('/login')
         });
       
-
+      console.log("after await");
       window.localStorage.setItem('token', newToken);
       instance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
       originalRequest.headers['Authorization'] = `Bearer ${newToken}`;

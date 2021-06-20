@@ -17,7 +17,7 @@ const defaultWork = {
   id: 3,
   title: "Third work",
   description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  image: require("../../../images/content/Preview-3.jpg").default,
+  image: 'uploads/463q5143895117621_origin.jpg',
   link: "//bing.com",
   tags: ["Azure", "Kubernetes", "DevOps"]
 };

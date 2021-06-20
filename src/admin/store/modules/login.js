@@ -50,7 +50,7 @@ const login = {
                 
             });
         },
-        logout(){
+        logout(state){
             console.log('logout');
             axios.post('/logout', {}).then( response => {
                 console.log(response.data);
@@ -60,6 +60,7 @@ const login = {
                 window.localStorage.removeItem('token');
                 window.localStorage.removeItem('expirestAt');
                 window.localStorage.removeItem('userId');
+                router.replace('/login');
             });
         }
     }

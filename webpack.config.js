@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
     exclude: /node_modules/,
     options: {
       presets: ["@babel/preset-env"],
-      plugins: ["@babel/plugin-syntax-dynamic-import"],
+      plugins: ["@babel/plugin-syntax-dynamic-import", "@babel/plugin-transform-runtime"],
     },
   };
 
@@ -145,6 +145,8 @@ module.exports = (env, argv) => {
         filename: "[name].[contenthash].css",
         chunkFilename: "[contenthash].css",
       }),
+      new SpriteLoaderPlugin({ plainSprite: true }),
+      new VueLoaderPlugin(),
     ]);
 
     config.optimization = {};

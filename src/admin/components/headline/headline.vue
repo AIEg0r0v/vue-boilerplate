@@ -5,10 +5,12 @@
         slot
         .headline-title {{title}}
         .headline-btns
-          button(type="button").headline-btn Exit
+          button(type="button" @click="logout").headline-btn Exit
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
   props: {
     title: {
@@ -16,8 +18,8 @@ export default {
       default: "Admin Panel"
     }
   },
-  computed: {
-    
+  methods: {
+    ... mapMutations(['logout'])   
   }
 };
 </script>

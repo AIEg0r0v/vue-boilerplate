@@ -1,7 +1,7 @@
 <template lang="pug">
   .work-component(:class="{'work-component--disabled': disabled}")
     .work__header
-      img(:src="work.image").work__header-image
+      img(:src="cover").work__header-image
       ul.work__header-tags
         li(
           v-for="tag in work.tags" 
@@ -31,6 +31,7 @@
 <script>
 import icon from "../icon";
 import tag from "../tag";
+const serverUrl = 'https://webdev-api.loftschool.com'
 export default {
   components: { 
     icon, 
@@ -49,11 +50,13 @@ export default {
     }
   },
   computed: {
-
+    cover() {
+      return `${serverUrl}/${this.work.image}`;
+    }
   },
   methods: {
     requestEdit(){
-      this.$emit('editRequested', this.work.id);
+      this.$emit('editRequested', this.work);
     },
     deleteWork(){
       this.$emit('deleted', this.work.id);

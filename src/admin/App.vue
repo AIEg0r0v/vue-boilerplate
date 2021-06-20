@@ -1,105 +1,47 @@
 <template lang="pug">
   .app-container
-    headline(title="Admin Panel")
+    headline(title="Admin Panel" )
       user(
         :picture='require("../images/content/alex.jpg").default'
         name="Alexander Egorov"
       )
-    navigation
+    navigation(:tabs="navTabs")
     .page-content
-      .container
-        .header
-          .title Block "About Me"
-          iconed-btn(type="iconed" title="Add Category" @click="addCategory")
-        ul.categories
-          li(v-for="category in categories").category
-            category(
-              :category="category"
-                @skillAdded="onSkillAdded"
-                @skillDeleted="onSkillDeleted"
-                @skillUpdated="onSkillUpdated"
-                @deleted="onCategoryDeleted"
-                @updated="onCategoryUpdated"
-            )
+      router-view
 </template>
 
 <script>
+
+const defaultTabs = [
+{id: 0, title: "About", alias: "/about", active: false},
+{id: 1, title: "Works", alias: "/works", active: true},
+{id: 2, title: "Reviews", alias: "/reviews", active: false},
+];
+
 import '../styles/main.pcss'
 import user from './components/user/user.vue'
 import headline from './components/headline/headline.vue'
 import navigation from './components/navigation/navigation.vue'
 import iconedBtn from './components/button/button.vue'
 import category from './components/category/category.vue'
+import work from "./components/work/work.vue";
 
 export default {
   components: {
-    user, headline, navigation, iconedBtn, category
+    user, headline, navigation, iconedBtn, category, work
   },
   data() {
       return {
-          categories: []
+          categories: [],
+          navTabs: defaultTabs
       }
   },
   created(){
-      this.categories = require('../data/skills.json');
   },
   methods: {
-    onSkillAdded({categoryId, skill}) {
-      console.log("onSkillAdded");
-      console.log(categoryId, skill);
-      var category = this.categories.filter( (c) => c.id === categoryId)[0];
-      var savedSkill = this.saveSkill(this.categories, skill)
-      category.skills.push(savedSkill);
-    },
-    onSkillDeleted({categoryId, id}) {
-      console.log("onSkillDeleted");
-      console.log(categoryId, id);
-      var category = this.categories.filter( (c) => c.id === categoryId)[0];
-      category.skills = category.skills.filter( (skill) => skill.id !== id );
-    },
-    onSkillUpdated({categoryId, skill}) {
-      console.log("onSkillUpdated");
-      console.log(categoryId, skill);
-      var category = this.categories.filter( (c) => c.id === categoryId)[0];
-      var skillToUpdate = category.skills.filter( (s) => s.id === skill.id)[0];
-      skillToUpdate.name = skill.name;
-      skillToUpdate.value = skill.value;
-      //somehow need do disable canEdit in the skill
-
-    },
-    onCategoryDeleted(categoryId) {
-      console.log("onCategoryDeleted");
-      console.log(categoryId);
-      this.categories = this.categories.filter( (category) => category.id !== categoryId );
-      
-      //If the categories are not saved, then after adding a bunch of new ones we will delete all of the unsaved
-      //we shoud delete just THIS category
-
-    },
-    onCategoryUpdated(category) {
-      console.log("onCategoryUpdated");
-      console.log(category);
-      var categoryToUpdate = this.categories.filter(c => c.id === categoryId)[0];
-      categoryToUpdate.name = category.name;
-      categoryToUpdate.skills = category.skills;
-
-      //somehow need do disable canEdit in the category title
-    },
-    saveSkill(categories, skill) {
-      //assuming on saveSkill go to backend and save the skill. 
-      //We are getting back a skill with a proper new id
-      //this function is just facking it.
-      var skillIds = categories.map( x => x.skills).flat().map( x => x.id);
-      var lastId = skillIds.reduce((id, currentId) => {var maxId = currentId >= id ?  currentId : id; return maxId});
-      skill.id = lastId + 1;
-      return skill;
-    },
-    addCategory(){
-      this.categories.push({});
-    }
+ 
   },
-  setup() {
-    
+  computed: {
   },
 }
 </script>

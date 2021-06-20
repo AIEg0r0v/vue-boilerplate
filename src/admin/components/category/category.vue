@@ -4,9 +4,10 @@
       edit-line(
         slot="title", 
         v-model="category.name",
-        defaultEditMode
+        :defaultEditMode="editMode"
         @remove="onCategoryDelete"
         @approve="onCategoryUpdate"
+        @input="onNameChange"
       ).category-title
       template(slot="content")
         ul.skills
@@ -30,6 +31,7 @@ import card from "../card";
 import editLine from "../editLine";
 import skill from "../skill";
 import skillAddLine from "../skillAddLine";
+import {mapMutations} from "vuex";
 
 export default {
   components: { card, editLine, skill, skillAddLine
@@ -43,29 +45,31 @@ export default {
   },
   data(){
     return{
-     
+      editMode: false
     }
   },
   methods: {
+    ...mapMutations(['addSkill', 'deleteSkill', 'updateSkill', 'deleteCategory', 'updateCategory']),
+
     onSkillAdd(addedSkill){
-      this.$emit('skillAdded', {skill: addedSkill, categoryId: this.category.id});
-      // this.category.skills.push(addedSkill);
+      this.addSkill( {skill: addedSkill, categoryId: this.category.id} );
     },
-    onSkillChange: function (updatedSkill, event){
-      this.$emit('skillUpdated', {skill: updatedSkill, categoryId: this.category.id});
-      // var skillToUpdate = this.category.skills.filter((skill) => { skill.id === updatedSkill.id })
-      // skillToUpdate.name = updatedSkill.name;
-      // skillToUpdate.value = updatedSkill.value;
+    onSkillChange: function (updatedSkill){
+      this.updateSkill( {skill: updatedSkill, categoryId: this.category.id} );
     },
     onSkillDelete(skillId){
-      this.$emit('skillDeleted', {id: skillId, categoryId: this.category.id});
-      // this.category.skills = this.category.skills.filter( (skill) => { skill.id !== skillId });
+      this.deleteSkill( {id: skillId, categoryId: this.category.id} );
     },
     onCategoryDelete(){
-      this.$emit('deleted', this.category.id)
+      this.deleteCategory(this.category.id);
     },
-    onCategoryUpdate(name){
-      this.$emit('updated', this.category)
+    onCategoryUpdate(){
+      this.editMode = false;
+      this.updateCategory(this.category);
+    
+    },
+    onNameChange(newName){
+      this.category.name = newName;
     }
 
   },

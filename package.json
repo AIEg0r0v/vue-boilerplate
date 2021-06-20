@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.3.1",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-backgrounds": "^5.3.19",
@@ -28,6 +29,7 @@
     "@storybook/vue": "^5.3.19",
     "autoprefixer": "^9.4.8",
     "babel-loader": "^8.0.5",
+    "babel-preset-vue": "^2.0.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
@@ -63,13 +65,18 @@
     "last 2 versions"
   ],
   "dependencies": {
+    "axios": "^0.21.1",
     "babel-preset-vue": "^2.0.2",
+    "jwt-decode": "^3.1.2",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
+    "regenerator-runtime": "^0.13.7",
     "request": "^2.88.0",
     "signale": "^1.4.0",
+    "simple-vue-validator": "^0.16.0",
     "vue": "^2.6.7",
     "vue-flickity": "^1.2.1",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.2",
+    "vuex": "^3.6.2"
   }
 }

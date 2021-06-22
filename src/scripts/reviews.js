@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Flickity from 'vue-flickity';
- 
+import {store} from '../admin/store/index';
+import { mapState, mapActions } from "vuex";
 
+const serverUrl = 'https://webdev-api.loftschool.com';
 
 Vue.component('quote', {
    template: "#quote",
@@ -11,17 +13,22 @@ Vue.component('quote', {
 
 Vue.component('reviewer', {
     template: "#reviewer",
-    props: ["reviewer"] 
+    props: ["reviewer"],
+    computed: {
+        avatar() {
+            return `${serverUrl}/${this.reviewer.avatar}`;
+        }
+    }
  });
 
 const works = new Vue({
     template: "#reviews-list",
+    store,
     components: {
         Flickity
       },
     data() {
         return {
-            reviews: [],
             disabledNext: false,
             disabledPrev: true,
             flickityOptions: {
@@ -38,12 +45,18 @@ const works = new Vue({
         }
     },
     computed:{
-
+        ...mapState({
+            reviews: state => state.reviews.reviews,
+            userid: state => 463
+        })
+               
     },
     watch:{
 
     },
     methods: {
+        ...mapActions(["fetchReviews"]),
+
         checkArrows(e){
 
             var selectedIndex = this.$refs.flickity.$flickity.selectedIndex;
@@ -52,13 +65,7 @@ const works = new Vue({
             this.disabledPrev = selectedIndex === 0;
             
         },
-        updateImagesPath(reviews){
-            return reviews.map(review => {
-                const imagePath = require(`../images/content/${review.reviewer.avatar}`).default;
-                review.reviewer.avatar = imagePath;
-                return review
-            })
-        },
+        
         next() {
             this.$refs.flickity.next();
           },
@@ -67,9 +74,8 @@ const works = new Vue({
             this.$refs.flickity.previous();
         }
     },
-    created(){
-        const reviews = require("../data/reviews.json");
-        this.reviews = this.updateImagesPath(reviews);
+    async created(){
+        await this.fetchReviews(this.userid).then(() => this.$refs.flickity.rerender());
     },
     mounted() {
         let context = this;

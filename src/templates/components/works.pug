@@ -7,13 +7,14 @@ script(type="text/x-template")#works-list
             @nextSlide="nextSlide",
             @prevSlide="prevSlide",
             @setCurrent="setCurrent"
+            v-if="dataLoaded"
         )
         work-info(:work="selectedWork")    
 
 script(type="text/x-template")#work-preview
     .works-preview
         .works-preview__pictures(:data-slide="selectedIndex + 1")
-            img(:src="currentWork.image").works-preview__img
+            img(:src="cover").works-preview__img
         work-thumbs(
             :currentWork="currentWork", 
             :works="reversedWorks",
@@ -46,7 +47,7 @@ script(type="text/x-template")#work-thumbs
                 @click="$emit('setCurrent', work)" 
             )
                 span.thumbs__link
-                img(:src="work.image").thumbs__pic
+                img(:src="cover(work.image)").thumbs__pic
 
 script(type="text/x-template")#work-tags
     ul.tags

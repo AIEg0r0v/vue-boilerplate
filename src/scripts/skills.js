@@ -1,16 +1,28 @@
 import Vue from "vue";
-import { mapState, mapActions } from "vuex";
+import {store} from '../admin/store/index';
+import { mapState, mapMutations } from "vuex";
+
+const serverUrl = 'https://webdev-api.loftschool.com';
 
 const skills = new Vue({
     template: "#skills-list",
+    store,
     data() {
         return {
-            categories: []
         }
     },
-    
-    created(){
-        this.categories = require('../data/skills.json')
+    computed:{
+        ...mapState({
+            categories: state => state.about.categories,
+            userid: state => 463
+        })
+               
+    },
+    methods:{
+        ...mapMutations(["loadCategories"]),
+    },
+    async created(){
+        this.loadCategories(this.userid);
     }
 })
 

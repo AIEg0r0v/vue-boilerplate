@@ -10,7 +10,7 @@ const reviewService = {
         return loftSchoolReview;
     },
 
-    loftSchoolreviewToReview(loftSchoolReview){
+    loftSchoolReviewToReview(loftSchoolReview){
         let review = {
             id: loftSchoolReview.id,
             reviewer: {

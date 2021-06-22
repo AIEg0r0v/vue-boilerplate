@@ -43,7 +43,6 @@
 
 
 <script>
-import work from '../../components/work/work.vue'
 import card from '../../components/card/card.vue'
 import tagsAdder from '../../components/tagsAdder/tagsAdder.vue'
 import appInput from "../../components/input/input.vue"
@@ -53,7 +52,7 @@ import squareBtn from "../../components/button/button.vue";
 const serverUrl = 'https://webdev-api.loftschool.com'
 export default {
   components: {
-    work, squareBtn, defaultBtn, card, tagsAdder, appInput
+    squareBtn, defaultBtn, card, tagsAdder, appInput
   },
   props: {
     work: {

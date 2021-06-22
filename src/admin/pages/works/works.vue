@@ -12,7 +12,7 @@
       li().work
         square-btn( 
           type="square"
-          title="Add work" 
+          title="Add Work" 
           @click="onWorkCreate" 
         )
       li(v-for="work in works").work
@@ -22,18 +22,13 @@
 
 <script>
 import work from '../../components/work/work.vue'
-import card from '../../components/card/card.vue'
-import tagsAdder from '../../components/tagsAdder/tagsAdder.vue'
-import appInput from "../../components/input/input.vue"
-import defaultBtn from "../../components/button/types/defaultBtn/defaultBtn.vue";
 import squareBtn from "../../components/button/button.vue"; 
 import editWork from "../../components/editWork/editWork.vue"; 
 import { mapState, mapActions } from "vuex";
-// import regeneratorRuntime from "regenerator-runtime";
 
 export default {
   components: {
-    work, squareBtn, defaultBtn, card, tagsAdder, appInput, editWork
+    work, squareBtn, editWork
   },
   data() {
       return {
@@ -58,7 +53,6 @@ export default {
       this.editMode = true;
     },
     onWorkCreate(){
-      console.log('todo: create work');
       this.newWork = {id:0, tags: [], title: '', description: '', link: ''};
       this.editMode = true;
     },

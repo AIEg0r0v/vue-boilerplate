@@ -10,9 +10,6 @@ script(type="text/x-template")#works-list
         )
         work-info(:work="selectedWork")    
 
-//- script(type="text/x-template")#works-display
-//-     #test
-
 script(type="text/x-template")#work-preview
     .works-preview
         .works-preview__pictures(:data-slide="selectedIndex + 1")
@@ -39,8 +36,6 @@ script(type="text/x-template")#work-btns
                 @click="$emit('prevSlide')"
             ).square-btns__item.square-btns__item--prev
 
-//- script(type="text/x-template")#work-preview
-//-     #test
 
 script(type="text/x-template")#work-thumbs
     .works-preview__thumbs

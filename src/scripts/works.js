@@ -1,5 +1,5 @@
 import Vue from "vue";
-
+import { mapState } from "vuex";
 
 Vue.component('workPreview', {
     template: "#work-preview",

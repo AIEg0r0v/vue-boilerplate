@@ -19,13 +19,13 @@ instance.interceptors.response.use(
   async error => {
 
     const originalRequest = error.config;
-    console.log(originalRequest);
     if(error.response.status === 401)
     {
       var newToken;
+      var oldToken = window.localStorage.getItem('token');
       await axios.post(`${apiBaseUrl}/refreshToken`, {}, {
         headers: {
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${oldToken}`
         } 
       }).then( c => {
           console.log("Successfully refreshed token");
@@ -38,7 +38,6 @@ instance.interceptors.response.use(
           router.replace('/login')
         });
       
-      console.log("after await");
       window.localStorage.setItem('token', newToken);
       instance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
       originalRequest.headers['Authorization'] = `Bearer ${newToken}`;

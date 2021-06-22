@@ -1,4 +1,5 @@
 import Vue from "vue";
+import { mapState, mapActions } from "vuex";
 
 const skills = new Vue({
     template: "#skills-list",

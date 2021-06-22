@@ -5,7 +5,7 @@
     editWork(
       v-if="editMode" 
       :work="newWork"
-      @editCancelled="editMode = false"
+      @editCancelled="onEditCancelled"
       @editCompleted="onEditCompleted"
     )
     ul.works
@@ -16,7 +16,12 @@
           @click="onWorkCreate" 
         )
       li(v-for="work in works").work
-        work(:work="work" @editRequested="onEditRequested" @deleted="deleteWork")      
+        work(
+          :disabled="work.id === newWork.id"
+          :work="work" 
+          @editRequested="onEditRequested" 
+          @deleted="deleteWork"
+        )      
 
 </template>
 
@@ -55,6 +60,10 @@ export default {
     onWorkCreate(){
       this.newWork = {id:0, tags: [], title: '', description: '', link: ''};
       this.editMode = true;
+    },
+    onEditCancelled(){
+      this.editMode = false;
+      this.newWork = {id:0, tags: [], title: '', description: '', link: ''};
     },
     async onEditCompleted(work){
 

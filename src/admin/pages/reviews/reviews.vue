@@ -5,7 +5,7 @@
     edit-review(
       v-if="editMode" 
       :review="newReview"
-      @editCancelled="editMode = false"
+      @editCancelled="onEditCancelled"
       @editCompleted="onEditCompleted"
     )
     ul.reviews
@@ -16,7 +16,12 @@
           @click="onReviewCreate" 
         )
       li(v-for="review in reviews").review
-        review(:review="review" @editRequested="onEditRequested" @deleted="deleteReview")     
+        review(
+          :review="review"
+          :disabled="review.id === newReview.id"
+          @editRequested="onEditRequested"
+          @deleted="deleteReview"
+        )     
       
 
 </template>
@@ -57,6 +62,10 @@ export default {
       this.newReview = {  id:0, reviewer: { name: '', title: '', avatar: '', preview: '' }, text: ''  };
       this.editMode = true;
     },
+    onEditCancelled(){
+      this.editMode = false;
+      this.newReview = {  id:0, reviewer: { name: '', title: '', avatar: '', preview: '' }, text: ''  };
+    },
     async onEditCompleted(review){
 
       if(review.id !== 0) {
@@ -67,6 +76,7 @@ export default {
       this.editMode = false;
     }
   },
+  
   async created(){
     await this.fetchReviews(this.userid);
   }

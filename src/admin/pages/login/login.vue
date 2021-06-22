@@ -1,11 +1,6 @@
 <template lang="pug">
   .container
     .header
-      .title Block "Login". I have no idea how to make router works for 2 modules: main and admin at the same time. Username: dar10052021 
-      pre {{loggedIn}}
-      pre {{token}}
-      pre {{expiresAt}}
-      pre {{userId}}
       .login__form
         app-input(title="Username" icon="user" v-model="user.name").login__form-username
         app-input(title="Password" icon="key" type="password" v-model="user.password").login__form-password

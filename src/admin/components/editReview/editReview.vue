@@ -18,16 +18,16 @@
             .edit__reviewer
               app-input(
                 title="Author Name"
-                v-model="review.reviewer.name"
+                v-model.trim="review.reviewer.name"
               ).edit__reviewer-input.edit__review-title
               app-input(
                 title="Author Title"
-                v-model="review.reviewer.title"
+                v-model.trim="review.reviewer.title"
               ).edit__reviewer-input.edit__review-link
             app-input(
               title="Review"
               fieldType="textarea"
-              v-model="review.text"
+              v-model.trim="review.text"
             ).edit__review-input.edit__review-description
             .edit__review-buttons
               defaultBtn(title="Cancel" plain @click.prevent="onReviewUpdateCanceled").edit__review-cancelbtn

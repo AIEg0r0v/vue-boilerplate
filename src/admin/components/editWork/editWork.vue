@@ -21,16 +21,16 @@
           .edit__work-container
             app-input(
               title="Name"
-              v-model="work.title"
+              v-model.trim="work.title"
             ).edit__work-input.edit__work-title
             app-input(
               title="Link"
-              v-model="work.link"
+              v-model.trim="work.link"
             ).edit__work-input.edit__work-link
             app-input(
               title="Description"
               fieldType="textarea"
-              v-model="work.description"
+              v-model.trim="work.description"
             ).edit__work-input.edit__work-description
             tags-adder(
               title="Add tag" 

@@ -51,7 +51,6 @@ module.exports = (env, argv) => {
         loader: "svg-sprite-loader",
         options: {
           extract: true,
-          publicPath: publicPath,
           spriteFilename: (svgPath) => `sprite${svgPath.substr(-4)}`,
         },
       },
@@ -102,7 +101,7 @@ module.exports = (env, argv) => {
     resolve: {
       alias: {
         vue$: "vue/dist/vue.esm.js",
-        images: path.resolve(__dirname, "src/images"),
+        images: path.resolve(__dirname, "./src/images"),
         components: path.resolve(__dirname, "./src/admin/components"),
         styles: path.resolve(__dirname, "./src/styles"),
       },

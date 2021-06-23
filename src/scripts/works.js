@@ -6,7 +6,23 @@ const serverUrl = 'https://webdev-api.loftschool.com';
 
 Vue.component('workPreview', {
     template: "#work-preview",
-    props: ["currentWork", "works", "selectedIndex"],
+    props: {
+        currentWork: {
+            type: Object,
+            default: () => {},
+            required: true
+        }, 
+        works: {
+            type: Array,
+            default: () => [],
+            required: true
+        },
+        selectedIndex: {
+            type: Number,
+            default: () => 0,
+            required: true
+        }
+    },
     data() {
         return {
         }
@@ -24,13 +40,23 @@ Vue.component('workPreview', {
     created(){
     },
     mounted(){
-        // this.currentWork = this.works[0];
     }
 });
 
 Vue.component('workThumbs', {
     template: "#work-thumbs",
-    props: ["currentWork", "works"],
+    props: {
+        currentWork: {
+        type: Object,
+        default: () => {},
+        required: true
+      }, 
+        works: {
+        type: Array,
+        default: () => [],
+        required: true
+      }
+    },
     data() {
         return {
         }
@@ -45,7 +71,13 @@ Vue.component('workThumbs', {
 });
 
 Vue.component('work', {
-    props: ["work"],
+    props: {
+        work: {
+            type: Object,
+            default: () => {},
+            required: true
+          }
+    },
     template: '#work',
     
     data() {
@@ -71,7 +103,13 @@ Vue.component('workBtns', {
 
 Vue.component('workTags', {
     template: '#work-tags',
-    props: ["tags"],
+    props: {
+        tags: {
+            type: Array,
+            default: () => [],
+            required: true
+          }
+    },
     data() {
         return {
 
@@ -84,7 +122,13 @@ Vue.component('workTags', {
 
 Vue.component('workInfo', {
     template: '#work-info',
-    props: ["work"],
+    props: {
+        work: {
+            type: Object,
+            default: () => {},
+            required: true
+          }
+    },
     data() {
         return {
     

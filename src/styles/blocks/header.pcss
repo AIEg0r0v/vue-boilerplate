@@ -5,6 +5,9 @@
 .menu__link {
     text-decoration: none;
     white-space: nowrap;
+    &:hover, &:active, &:focus{
+        color: #383BCF;
+    }
 }
 .menu__item {
     margin-right: 60px;
@@ -27,6 +30,11 @@
     margin-right: 30px;
     &:last-child {
         margin-right: 0px;
+    }
+    &:hover, &:active, &:focus{
+        .socials__icon {
+            fill: #383BCF;
+        }
     }
 }
 

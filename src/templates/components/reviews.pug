@@ -8,14 +8,14 @@ script(type="text/x-template")#reviews-list
                     @click="previous" 
                     ref="prevBtn" 
                     :disabled = "disabledPrev"
-                ).round-btn.round-btn--pointer-left
+                ).round-btn-style.round-btn--pointer-left
                     +icon("chevron","review-btn")
                 button(
                     type="button"
                     @click="next" 
                     ref="nextBtn"
                     :disabled = "disabledNext"
-                ).round-btn.round-btn--pointer-right
+                ).round-btn-style.round-btn--pointer-right
                     +icon("chevron","review-btn")
         Flickity(
                 :options="flickityOptions" 

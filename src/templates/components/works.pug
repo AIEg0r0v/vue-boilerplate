@@ -9,7 +9,10 @@ script(type="text/x-template")#works-list
             @setCurrent="setCurrent"
             v-if="dataLoaded"
         )
-        work-info(:work="selectedWork")    
+        work-info(
+            :work="selectedWork" 
+            v-if="dataLoaded"
+        )    
 
 script(type="text/x-template")#work-preview
     .works-preview
@@ -63,4 +66,4 @@ script(type="text/x-template")#work-info
         .works-preview__desc
             p {{work.description}}
         .works-preview__visit
-            a(:href="work.link").iconed-link Visit Website
+            a(:href="work.link" target="_blank").iconed-link Visit Website

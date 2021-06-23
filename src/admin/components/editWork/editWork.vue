@@ -21,16 +21,16 @@
           .edit__work-container
             app-input(
               title="Name"
-              v-model="work.title"
+              v-model.trim="work.title"
             ).edit__work-input.edit__work-title
             app-input(
               title="Link"
-              v-model="work.link"
+              v-model.trim="work.link"
             ).edit__work-input.edit__work-link
             app-input(
               title="Description"
               fieldType="textarea"
-              v-model="work.description"
+              v-model.trim="work.description"
             ).edit__work-input.edit__work-description
             tags-adder(
               title="Add tag" 
@@ -43,7 +43,6 @@
 
 
 <script>
-import work from '../../components/work/work.vue'
 import card from '../../components/card/card.vue'
 import tagsAdder from '../../components/tagsAdder/tagsAdder.vue'
 import appInput from "../../components/input/input.vue"
@@ -53,7 +52,7 @@ import squareBtn from "../../components/button/button.vue";
 const serverUrl = 'https://webdev-api.loftschool.com'
 export default {
   components: {
-    work, squareBtn, defaultBtn, card, tagsAdder, appInput
+    squareBtn, defaultBtn, card, tagsAdder, appInput
   },
   props: {
     work: {

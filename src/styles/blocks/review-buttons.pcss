@@ -1,28 +1,37 @@
-.round-btn{
-  height: 50px;
-  width: 50px;
-  border-radius:50%;
-  border: 2px solid #464E62;
+.round-btn {
   box-sizing: border-box;
-  background-color: transparent;
   &--pointer-left {
-    
     margin-right: 25px;
     transform: rotate(90deg);
   }
   &--pointer-right {
     transform: rotate(270deg);
   }
-  &:disabled{
+}
+.round-btn-style {
+  height: 50px;
+  width: 50px;
+  border-radius:50%;
+  border: 2px solid #464E62;
+  background-color: transparent;
+
+  
+  &:hover {
+    border-color: #383BCF;
+    
+    .review-btn {
+      fill: #383BCF;
+    }
+  }
+
+  &:disabled {
     cursor:default;
     border-color: rgba(#464E62, 0.3);
-    
     .review-btn {
       fill: rgba(#464E62, 0.3);
     }
   }
 }
-
 .review-btn {
   height: 12px;
   fill: #464E62;

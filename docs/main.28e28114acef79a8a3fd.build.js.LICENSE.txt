@@ -1,4 +1,10 @@
 /*!
+  * vue-router v3.5.1
+  * (c) 2021 Evan You
+  * @license MIT
+  */
+
+/*!
  * Flickity v2.2.2
  * Touch, responsive, flickable carousels
  *
@@ -31,4 +37,10 @@
  * getSize v2.0.3
  * measure size of elements
  * MIT license
+ */
+
+/*!
+ * vuex v3.6.2
+ * (c) 2021 Evan You
+ * @license MIT
  */

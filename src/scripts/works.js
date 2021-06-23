@@ -1,9 +1,28 @@
 import Vue from "vue";
+import { mapState, mapActions } from "vuex";
+import {store} from '../admin/store/index';
 
+const serverUrl = 'https://webdev-api.loftschool.com';
 
 Vue.component('workPreview', {
     template: "#work-preview",
-    props: ["currentWork", "works", "selectedIndex"],
+    props: {
+        currentWork: {
+            type: Object,
+            default: () => {},
+            required: true
+        }, 
+        works: {
+            type: Array,
+            default: () => [],
+            required: true
+        },
+        selectedIndex: {
+            type: Number,
+            default: () => 0,
+            required: true
+        }
+    },
     data() {
         return {
         }
@@ -11,6 +30,9 @@ Vue.component('workPreview', {
     methods: {
     },
     computed: {
+        cover() {
+            return `${serverUrl}/${this.currentWork.image}`;
+        },
         reversedWorks(){
             return [...this.works].slice(0,4).reverse();
         }
@@ -18,26 +40,44 @@ Vue.component('workPreview', {
     created(){
     },
     mounted(){
-        // this.currentWork = this.works[0];
     }
 });
 
 Vue.component('workThumbs', {
     template: "#work-thumbs",
-    props: ["currentWork", "works"],
+    props: {
+        currentWork: {
+        type: Object,
+        default: () => {},
+        required: true
+      }, 
+        works: {
+        type: Array,
+        default: () => [],
+        required: true
+      }
+    },
     data() {
         return {
         }
     },
     methods: {
-        
+        cover(workImage) {
+            return `${serverUrl}/${workImage}`;
+        }, 
     },
     created(){
     }
 });
 
 Vue.component('work', {
-    props: ["work"],
+    props: {
+        work: {
+            type: Object,
+            default: () => {},
+            required: true
+          }
+    },
     template: '#work',
     
     data() {
@@ -63,7 +103,13 @@ Vue.component('workBtns', {
 
 Vue.component('workTags', {
     template: '#work-tags',
-    props: ["tags"],
+    props: {
+        tags: {
+            type: Array,
+            default: () => [],
+            required: true
+          }
+    },
     data() {
         return {
 
@@ -76,7 +122,13 @@ Vue.component('workTags', {
 
 Vue.component('workInfo', {
     template: '#work-info',
-    props: ["work"],
+    props: {
+        work: {
+            type: Object,
+            default: () => {},
+            required: true
+          }
+    },
     data() {
         return {
     
@@ -88,13 +140,19 @@ Vue.component('workInfo', {
 
 const works = new Vue({
     template: "#works-list",
+    store,
     data() {
         return {
-            works: [],
-            selectedIndex: 0
+            selectedIndex: 0,
+            dataLoaded: false,
         }
     },
     computed:{
+        ...mapState({
+            works: state => state.works.works,
+            userid: state => 463
+        }),
+
         selectedWork(){
             return this.works[0];
         }
@@ -105,18 +163,15 @@ const works = new Vue({
         }
     },
     methods: {
+
+        ...mapActions(["fetchWorks"]),
+
         makeInfiniteLoopForIndex(index){
             var maxIndexValue = this.works.length - 1;
             if(index < 0) this.selectedIndex = maxIndexValue;
             if(index > maxIndexValue) this.selectedIndex = 0;
         },
-        updateImagesPath(works){
-            return works.map(work => {
-                const imagePath = require(`../images/content/${work.image}`).default;
-                work.image = imagePath;
-                return work
-            })
-        },
+        
         nextSlide(){
             this.works.push(this.works[0]);
             this.works.shift();
@@ -135,10 +190,11 @@ const works = new Vue({
             }
         }
     },
-    created(){
-        var loadedWorks = require('../data/works.json')
-        this.works = this.updateImagesPath(loadedWorks);
-        // this.selectedWork = this.works[this.selectedIndex];
+    async created(){
+        await this.fetchWorks(this.userid).then(() => {
+            console.log("finished loading");
+            this.dataLoaded = true;
+        });
     }
 });
 

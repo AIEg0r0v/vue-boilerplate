@@ -7,16 +7,17 @@ script(type="text/x-template")#works-list
             @nextSlide="nextSlide",
             @prevSlide="prevSlide",
             @setCurrent="setCurrent"
+            v-if="dataLoaded"
         )
-        work-info(:work="selectedWork")    
-
-//- script(type="text/x-template")#works-display
-//-     #test
+        work-info(
+            :work="selectedWork" 
+            v-if="dataLoaded"
+        )    
 
 script(type="text/x-template")#work-preview
     .works-preview
         .works-preview__pictures(:data-slide="selectedIndex + 1")
-            img(:src="currentWork.image").works-preview__img
+            img(:src="cover").works-preview__img
         work-thumbs(
             :currentWork="currentWork", 
             :works="reversedWorks",
@@ -39,8 +40,6 @@ script(type="text/x-template")#work-btns
                 @click="$emit('prevSlide')"
             ).square-btns__item.square-btns__item--prev
 
-//- script(type="text/x-template")#work-preview
-//-     #test
 
 script(type="text/x-template")#work-thumbs
     .works-preview__thumbs
@@ -51,7 +50,7 @@ script(type="text/x-template")#work-thumbs
                 @click="$emit('setCurrent', work)" 
             )
                 span.thumbs__link
-                img(:src="work.image").thumbs__pic
+                img(:src="cover(work.image)").thumbs__pic
 
 script(type="text/x-template")#work-tags
     ul.tags
@@ -67,4 +66,4 @@ script(type="text/x-template")#work-info
         .works-preview__desc
             p {{work.description}}
         .works-preview__visit
-            a(:href="work.link").iconed-link Visit Website
+            a(:href="work.link" target="_blank").iconed-link Visit Website

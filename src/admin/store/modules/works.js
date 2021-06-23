@@ -1,15 +1,11 @@
 import axios from '../../axios';
 import workService from '../../services/work';
-// import regeneratorRuntime from "regenerator-runtime";
 
 const works = {
     state : {
         works: []
     },
     mutations: {
-        addWork(state, work){
-            state.works.push(work);
-        },
         ADD_WORK(state, work){
             state.works.push(work);
         },
@@ -17,17 +13,13 @@ const works = {
             state.works = works;
         },
         UPDATE_WORK(state, updatedWork){
-            console.log("This should update WORK in Works");
-            console.log(updatedWork);
             //todo handle update better and potential unmatch
             var work = state.works.filter(x => x.id === updatedWork.id)[0];
             
-            console.log(work);
             Object.keys(work).forEach( item => {
                 work[item] = updatedWork[item];
             });
             
-            console.log(work);
         },
         DELETE_WORK(state, workId){
             state.works = state.works.filter(x => x.id !== workId);
@@ -39,8 +31,6 @@ const works = {
             const formData = new FormData();
             const loftSchoolWork = workService.workToLoftSchoolWork(newWork);
             
-            console.log(loftSchoolWork);
-        
             Object.keys(loftSchoolWork).forEach( item => {
                 formData.append(item, loftSchoolWork[item]);
             });
@@ -66,18 +56,13 @@ const works = {
             const formData = new FormData();
             const loftSchoolWork = workService.workToLoftSchoolWork(updatedWork);
             
-            console.log('updating work');
-            console.log(updatedWork);
-        
             Object.keys(loftSchoolWork).forEach( item => {
                 formData.append(item, loftSchoolWork[item]);
             })
 
             try{
                 const {data} = await axios.post(`/works/${updatedWork.id}`, formData);
-                console.log(data); //handle not success, but error
                 const work = workService.loftSchoolWorkTowork(data.work);
-                console.log(work);
                 commit("UPDATE_WORK", work);
             } catch(error) {
                 console.log(error);

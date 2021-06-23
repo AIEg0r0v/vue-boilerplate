@@ -1,5 +1,5 @@
 <template lang="pug">
-  .user-component
+  a(:href="link").user-component
     avatar(size="3.1" :src="picture")
     .name {{name}}
 </template>
@@ -20,6 +20,10 @@ export default {
     name: {
       type: String,
       default: "Freddy Johanson"
+    },
+    link: {
+      type: String,
+      default: '/'
     }
   },
   computed: {

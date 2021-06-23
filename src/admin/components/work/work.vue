@@ -11,7 +11,7 @@
     .work__body
       .work__body-title {{work.title}}
       .work__body-description {{work.description}}
-      a(:href="work.link").work__body-link {{work.link}}
+      a(:href="work.link" target="_blank").work__body-link {{work.link}}
     .work-footer
       icon( 
         title="Edit"

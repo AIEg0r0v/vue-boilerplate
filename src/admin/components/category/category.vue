@@ -3,11 +3,11 @@
     card
       edit-line(
         slot="title", 
-        v-model="category.name",
+        v-model.trim="category.name",
         :defaultEditMode="editMode"
+        ref="editLine"
         @remove="onCategoryDelete"
         @approve="onCategoryUpdate"
-        @input="onNameChange"
       ).category-title
       template(slot="content")
         ul.skills
@@ -64,13 +64,9 @@ export default {
       this.deleteCategory(this.category.id);
     },
     onCategoryUpdate(){
-      this.editMode = false;
       this.updateCategory(this.category);
-    
+      this.$refs['editLine'].editmode = false;
     },
-    onNameChange(newName){
-      this.category.name = newName;
-    }
 
   },
   computed: {

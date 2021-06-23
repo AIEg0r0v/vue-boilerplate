@@ -91,10 +91,8 @@
 .footer__center-socials {
   display: flex;
   .socials__item {
-    width: 35px;
-    height: 35px;
-    /* padding: 5px; */
-    
+    width: 40px;
+    height: 40px;
   }
   .socials__icon {
     width: 20px;
@@ -109,6 +107,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    &:hover, &:active, &:focus{
+      border: 1px solid #383BCF;
+
+      .socials__icon{
+        fill: #383BCF;
+      }
+    }
   }
 }
 .footer__centerbottom__container{

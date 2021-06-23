@@ -11,15 +11,9 @@ const about = {
     },
     getters: {},
     mutations: {
-
         addSkill(state, {categoryId, skill}) {
-            console.log("addSkill mutation");
-
-            console.log(categoryId, skill);
-            
             var category = state.categories.filter( (c) => c.id === categoryId)[0];
-            console.log(category);
-            
+
             var loftSchoolskill = skillService.skillToLoftSchoolSkill(skill)
             loftSchoolskill.category = category.id;
 
@@ -31,8 +25,6 @@ const about = {
         },
         
         deleteSkill(state, {categoryId, id}) {
-            console.log("onSkillDeleted");
-            console.log(categoryId, id);
             axios.delete(`/skills/${id}`).then(response => {
                 var category = state.categories.filter( (c) => c.id === categoryId)[0];
                 category.skills = category.skills.filter( (skill) => skill.id !== id );
@@ -40,8 +32,6 @@ const about = {
         },
 
         updateSkill(state, {categoryId, skill}) {
-            console.log("onSkillUpdated");
-            console.log(categoryId, skill);
             var category = state.categories.filter( (c) => c.id === categoryId)[0];
             var skillToUpdate = category.skills.filter( (s) => s.id === skill.id)[0];
             skillToUpdate.name = skill.name;
@@ -57,17 +47,12 @@ const about = {
         },
 
         deleteCategory(state, categoryId) {
-            console.log("onCategoryDeleted");
-            console.log(categoryId);
-            
             axios.delete(`/categories/${categoryId}`).then(response => {
                 state.categories = state.categories.filter( (category) => category.id !== categoryId );
             });
         },
 
         updateCategory(state, category) {
-            console.log("onCategoryUpdated");
-            console.log(category);
             var categoryToUpdate = state.categories.filter(c => c.id === category.id)[0];
             categoryToUpdate.name = category.name;
             categoryToUpdate.skills = category.skills;
@@ -85,7 +70,6 @@ const about = {
         },
 
         loadCategories(state, userId) {
-            console.log('requesting categories for user' + userId);
             axios.get(`/categories/${userId}`).then(response => {
                 let loftSchoolCategories = response.data;
                 state.categories = loftSchoolCategories.map(category => 

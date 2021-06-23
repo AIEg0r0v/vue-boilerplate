@@ -1,6 +1,5 @@
 import axios from "axios";
 import router from './router'
-import regeneratorRuntime from "regenerator-runtime";
 
 const apiBaseUrl = 'https://webdev-api.loftschool.com';
 

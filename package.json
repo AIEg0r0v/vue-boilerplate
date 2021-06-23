@@ -70,7 +70,6 @@
     "jwt-decode": "^3.1.2",
     "normalize.css": "^8.0.1",
     "promptly": "^3.0.3",
-    "regenerator-runtime": "^0.13.7",
     "request": "^2.88.0",
     "signale": "^1.4.0",
     "simple-vue-validator": "^0.16.0",

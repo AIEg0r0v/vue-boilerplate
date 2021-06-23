@@ -10,7 +10,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = "./";
+  const publicPath = "/";
 
   const pcss = {
     test: /\.(p|post|)css$/,
@@ -144,9 +144,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: "[name].[contenthash].css",
         chunkFilename: "[contenthash].css",
-      }),
-      new SpriteLoaderPlugin({ plainSprite: true }),
-      new VueLoaderPlugin(),
+      })
     ]);
 
     config.optimization = {};

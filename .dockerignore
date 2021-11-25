@@ -1,0 +1,11 @@
+.dockerignore
+.env
+.git
+.cache
+.gitignore
+.vs
+.vscode
+docker-compose.yml
+docker-compose.*.yml
+packages/**/*.*
+dist/**/*.*

@@ -4,6 +4,7 @@
       user(
         :picture='require("../images/content/alex.jpg").default'
         name="Alexander Egorov"
+        link="/vue-boilerplate"
       )
     navigation(:tabs="navTabs")
     .page-content
